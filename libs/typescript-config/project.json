@@ -1,0 +1,7 @@
+{
+  "name": "typescript-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/typescript-config",
+  "files": ["*.json"]
+}
