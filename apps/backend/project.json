@@ -9,24 +9,24 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
-        "args": [
-          "node-env=production"
-        ]
+        "args": ["node-env=production"]
       },
       "configurations": {
         "development": {
-          "args": [
-            "node-env=development"
-          ]
+          "args": ["node-env=development"]
+        },
+        "test": {
+          "args": ["node-env=test"]
+        },
+        "production": {
+          "args": ["node-env=live"]
         }
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "buildTarget": "backend:build",
         "runBuildTargetDependencies": false
@@ -35,6 +35,9 @@
         "development": {
           "buildTarget": "backend:build:development"
         },
+        "test": {
+          "buildTarget": "backend:build:test"
+        },
         "production": {
           "buildTarget": "backend:build:production"
         }
@@ -42,14 +45,36 @@
     },
     "test": {
       "options": {
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "reportsDirectory": "{workspaceRoot}/coverage/apps/backend",
+        "coverage": {
+          "enabled": true,
+          "reporter": ["text", "html"],
+          "reportsDirectory": "{workspaceRoot}/coverage/apps/backend"
+        }
       }
     },
     "docker-build": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "command": "docker build -f apps/backend/Dockerfile . -t backend"
+    },
+    "dev": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "backend:build:development"
+        },
+        "test": {
+          "buildTarget": "backend:build:test"
+        },
+        "production": {
+          "buildTarget": "backend:build:production"
+        }
+      }
     }
   }
 }
