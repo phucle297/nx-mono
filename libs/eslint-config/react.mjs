@@ -1,11 +1,11 @@
-import airbnb from 'eslint-config-airbnb';
+import nx from '@nx/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
-  airbnb,
+  ...nx.configs['flat/react'],
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
@@ -20,7 +20,7 @@ export default [
     plugins: {
       react,
       'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y,
+      'react-refresh': reactRefresh,
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
@@ -31,13 +31,9 @@ export default [
       'react/jsx-props-no-spreading': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'jsx-a11y/anchor-is-valid': [
-        'error',
-        {
-          components: ['Link'],
-          specialLink: ['to'],
-          aspects: ['noHref', 'invalidHref', 'preferButton'],
-        },
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
       ],
     },
   },
