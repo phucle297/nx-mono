@@ -1,7 +1,7 @@
 {
-  "name": "typescript-config",
+  "name": "eslint-config",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "tools/typescript-config",
-  "files": ["*.json"]
+  "sourceRoot": "tools/eslint-config",
+  "files": ["*.mjs"]
 }

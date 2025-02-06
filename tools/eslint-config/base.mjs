@@ -1,6 +1,6 @@
 import nx from '@nx/eslint-plugin';
 import importRules from 'eslint-plugin-import';
-import globals from 'globals';
+import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
   ...nx.configs['flat/base'],
@@ -13,62 +13,19 @@ export default [
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     plugins: {
       import: importRules,
+      'unused-imports': unusedImports,
     },
     rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
       'linebreak-style': ['error', 'unix'],
-    },
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      globals: globals.browser,
-      parserOptions: {
-        project: ['../../tsconfig.base.json'],
-        tsconfigRootDir: ['../../'],
-      },
-    },
-    rules: {
-      '@typescript-eslint/naming-convention': [
-        'error',
-        { selector: 'function', format: ['camelCase', 'PascalCase'] },
+      '@typescript-eslint/no-unused-vars': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
         {
-          selector: 'variable',
-          types: ['boolean'],
-          format: ['PascalCase'],
-          prefix: ['is', 'should', 'has', 'can', 'did', 'will'],
-        },
-        { selector: 'variable', modifiers: ['destructured'], format: null },
-        {
-          selector: 'memberLike',
-          modifiers: ['private'],
-          format: ['camelCase'],
-          leadingUnderscore: 'require',
-        },
-      ],
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          args: 'all',
-          argsIgnorePattern: '^_',
-          caughtErrors: 'all',
-          caughtErrorsIgnorePattern: '^_',
-          destructuredArrayIgnorePattern: '^_',
+          vars: 'all',
           varsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
+          args: 'after-used',
+          argsIgnorePattern: '^_',
         },
       ],
     },

@@ -60,6 +60,7 @@
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "git-cz": "^4.9.0",
     "globals": "^15.14.0",
     "husky": "^9.1.7",

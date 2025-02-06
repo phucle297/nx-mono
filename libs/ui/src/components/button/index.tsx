@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import classes from './button.module.css';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
