@@ -1,3 +1,3 @@
-import eslintBase from './libs/eslint-config/base.mjs';
+import eslintBase from './tools/eslint-config/base.mjs';
 
 export default [...eslintBase];

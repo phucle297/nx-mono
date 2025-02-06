@@ -1,6 +1,6 @@
 {
   "extends": [
     "../../tsconfig.base.json",
-    "../../libs/typescript-config/react-e2e.json"
+    "../../tools/typescript-config/react-e2e.json"
   ]
 }

@@ -35,14 +35,6 @@
         "development": {
           "buildTarget": "frontend:build:development",
           "hmr": true
-        },
-        "test": {
-          "buildTarget": "frontend:build:test",
-          "hmr": false
-        },
-        "production": {
-          "buildTarget": "frontend:build:production",
-          "hmr": false
         }
       }
     },

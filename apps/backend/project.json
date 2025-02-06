@@ -67,12 +67,6 @@
       "configurations": {
         "development": {
           "buildTarget": "backend:build:development"
-        },
-        "test": {
-          "buildTarget": "backend:build:test"
-        },
-        "production": {
-          "buildTarget": "backend:build:production"
         }
       }
     }

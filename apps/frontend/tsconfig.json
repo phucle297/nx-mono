@@ -1,7 +1,7 @@
 {
   "extends": [
     "../../tsconfig.base.json",
-    "../../libs/typescript-config/vite.json"
+    "../../tools/typescript-config/vite.json"
   ],
   "references": [
     {
