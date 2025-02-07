@@ -3,20 +3,21 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
+    "target": "ES2020",
     "lib": [
-      "es2020",
-      "dom"
+      "dom",
+      "ES2020",
+      "ESNext"
     ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "strictNullChecks": true,
+    "baseUrl": "./",
     "paths": {
       "@mabinogi/ui": [
         "libs/ui/src/index.ts"

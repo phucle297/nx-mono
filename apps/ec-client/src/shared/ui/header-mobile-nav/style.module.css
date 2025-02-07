@@ -1,0 +1,18 @@
+.mobile-nav {
+  display: none;
+  padding: 1rem 0;
+}
+
+.mobile-nav-item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.mobile-nav-item:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}

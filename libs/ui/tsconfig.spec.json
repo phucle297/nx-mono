@@ -5,7 +5,10 @@
     "module": "commonjs",
     "moduleResolution": "node10",
     "jsx": "react-jsx",
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "jest.config.ts",

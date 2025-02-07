@@ -15,19 +15,19 @@
 To run the dev server for your app, use:
 
 ```sh
-npx nx serve frontend
+npx nx serve ec-client
 ```
 
 To create a production bundle:
 
 ```sh
-npx nx build frontend --configuration=production
+npx nx build ec-client --configuration=production
 ```
 
 To see all available targets to run for a project, run:
 
 ```sh
-npx nx show project frontend
+npx nx show project ec-client
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
@@ -91,3 +91,5 @@ And join the Nx community:
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+TODO: stylint, queue system, pinolog (be)

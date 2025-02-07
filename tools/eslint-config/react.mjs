@@ -1,11 +1,9 @@
-import nx from '@nx/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
-  ...nx.configs['flat/react'],
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {

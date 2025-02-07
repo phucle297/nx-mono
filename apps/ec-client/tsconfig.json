@@ -1,0 +1,17 @@
+{
+  "extends": [
+    //"../../tsconfig.base.json",
+    "../../tools/typescript-config/vite.json"
+  ],
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

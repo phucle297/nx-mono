@@ -1,0 +1,24 @@
+.search-bar {
+  padding: 1rem 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  padding-right: 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.search-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.625rem;
+  color: #9ca3af;
+}
