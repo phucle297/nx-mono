@@ -16,6 +16,8 @@
     "@tanstack/react-router": "^1.99.9",
     "axios": "^1.6.0",
     "clsx": "^2.1.1",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.474.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",

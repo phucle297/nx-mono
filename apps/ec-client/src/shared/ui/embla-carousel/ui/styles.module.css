@@ -1,0 +1,87 @@
+.carousel {
+  position: relative;
+}
+
+.carousel-content {
+  overflow: hidden;
+}
+
+.carousel-list {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-list[data-orientation='horizontal'] {
+  flex-direction: row;
+}
+
+.carousel-item {
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  margin-top: 16px;
+}
+
+.dot-indicator-list {
+  display: flex;
+  gap: 6px;
+}
+
+.dot-indicator-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot-indicator-btn:hover .inactive-icon {
+  color: #ff7f00;
+}
+
+.dot-indicator-btn[data-active='true'] {
+  pointer-events: none;
+}
+
+.dot-indicator-btn .active-icon {
+  width: 16px;
+  height: 16px;
+  color: #ff7f00;
+}
+
+.dot-indicator-btn .inactive-icon {
+  width: 16px;
+  height: 16px;
+  color: #333333;
+  transition: color ease-in-out 0.3s;
+}
+
+.carousel-prev-btn,
+.carousel-next-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-prev-btn:disabled,
+.carousel-next-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.carousel-prev-btn .prev-icon,
+.carousel-prev-btn .next-icon,
+.carousel-next-btn .prev-icon,
+.carousel-next-btn .next-icon {
+  width: 20px;
+  height: 20px;
+  color: #666666;
+}
