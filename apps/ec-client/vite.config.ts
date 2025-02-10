@@ -12,6 +12,9 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    fs: {
+      allow: ['../../libs/ui/src/assets/fonts/'],
+    },
   },
   preview: {
     port: 4300,
@@ -53,6 +56,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@ui': path.resolve(__dirname, '../../libs/ui/src'),
     },
   },
 });

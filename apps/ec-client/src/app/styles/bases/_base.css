@@ -11,6 +11,3 @@ input[type='search']::-webkit-search-results-decoration {
 
   min-height: 100vh;
 }
-* {
-  font-family: 'Roboto', sans-serif;
-}

@@ -1,0 +1,6 @@
+@import '@ui/styles/fonts.css';
+
+* {
+  /*font-family: 'Roboto', sans-serif;*/
+  font-family: 'Roboto', cursive;
+}

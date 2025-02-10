@@ -11,7 +11,14 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/ec-client"
+        "outputPath": "dist/apps/ec-client",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "libs/ui/src/*",
+            "output": "./"
+          }
+        ]
       },
       "configurations": {
         "development": {

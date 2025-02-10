@@ -2,8 +2,8 @@ import { Search } from 'lucide-react';
 import classes from './styles.module.css';
 
 export const HeaderSearchBar = () => (
-  <div className={classes['search-bar']}>
-    <div style={{ position: 'relative' }}>
+  <div className={classes['search-bar-wrapper']}>
+    <div className={classes['search-bar']}>
       <input
         type="text"
         placeholder="Search products..."

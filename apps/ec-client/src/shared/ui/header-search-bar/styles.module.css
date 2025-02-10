@@ -1,13 +1,19 @@
-.search-bar {
+.search-bar-wrapper {
   padding: 1rem 0;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.5rem 1rem;
-  padding-right: 2.5rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
+  padding: 5px;
+  padding-left: 15px;
+  font-size: 0.9rem;
 }
 
 .search-input:focus {
@@ -18,7 +24,8 @@
 
 .search-icon {
   position: absolute;
-  right: 0.75rem;
-  top: 0.625rem;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #9ca3af;
 }
