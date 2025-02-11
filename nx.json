@@ -39,7 +39,8 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": ["apps/ec-api-gateway-e2e/**/*"]
     },
     {
       "plugin": "@nx/vite/plugin",

@@ -1,0 +1,17 @@
+{
+  "name": "ec-api-gateway-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["ec-api-gateway"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apps/ec-api-gateway-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["ec-api-gateway:build"]
+    }
+  }
+}
