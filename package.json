@@ -1,5 +1,5 @@
 {
-  "name": "@mabinogi/source",
+  "name": "@nx-mono/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -11,6 +11,8 @@
   "dependencies": {
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
+    "@nestjs/cqrs": "^11.0.1",
+    "@nestjs/microservices": "^11.0.9",
     "@nestjs/platform-express": "^10.0.2",
     "@tanstack/react-query": "^5.66.0",
     "@tanstack/react-router": "^1.99.9",

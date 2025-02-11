@@ -1,95 +1,258 @@
-# Nx-Mono
+# Domain-Driven E-commerce System Architecture
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Core Domains & Bounded Contexts
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+### 1. Product Domain
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- **Commands**:
+  - CreateProduct
+  - UpdateProduct
+  - DeleteProduct
+  - UpdateInventory
+  - SetProductPrice
+- **Events**:
+  - ProductCreated
+  - ProductUpdated
+  - ProductDeleted
+  - InventoryUpdated
+  - PriceChanged
+- **Queries**:
+  - GetProduct
+  - ListProducts
+  - SearchProducts
+  - GetInventoryLevel
 
-## Finish your CI setup
+### 2. Order Domain
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/Y67meBJEKl)
+- **Commands**:
+  - CreateOrder
+  - UpdateOrderStatus
+  - CancelOrder
+- **Events**:
+  - OrderCreated
+  - OrderStatusUpdated
+  - OrderCancelled
+  - OderPaymentRequested
+  - OrderFulfilled
+- **Queries**:
+  - GetOrder
+  - ListOrders
+  - GetOrderHistory
+  - GetOrderStatus
 
-## Run tasks
+### 3. Customer Domain
 
-To run the dev server for your app, use:
+- **Commands**:
+  - RegisterCustomer
+  - UpdateCustomerProfile
+  - UpdateShippingAddress
+  - UpdateBillingInfo
+- **Events**:
+  - CustomerRegistered
+  - ProfileUpdated
+  - AddressUpdated
+  - BillingInfoUpdated
+- **Queries**:
+  - GetCustomerProfile
+  - GetCustomerOrders
+  - GetCustomerAddresses
 
-```sh
-npx nx serve ec-client
+### 4. Cart Domain
+
+- **Commands**:
+  - CreateCart
+  - AddItemToCart
+  - RemoveItemFromCart
+  - UpdateQuantity
+  - ApplyCoupon
+- **Events**:
+  - CartCreated
+  - ItemAdded
+  - ItemRemoved
+  - QuantityUpdated
+  - CouponApplied
+- **Queries**:
+  - GetCart
+  - GetCartTotal
+  - GetAppliedDiscounts
+
+### 5. Payment Domain
+
+- **Commands**:
+  - ProcessPayment
+  - RefundPayment
+  - CapturePayment
+- **Events**:
+  - PaymentProcessed
+  - PaymentFailed
+  - RefundInitiated
+  - RefundCompleted
+- **Queries**:
+  - GetPaymentStatus
+  - GetPaymentHistory
+  - GetRefundStatus
+
+### 6. Shipping Domain
+
+- **Commands**:
+  - CreateShipment
+  - UpdateShipmentStatus
+  - AssignCarrier
+- **Events**:
+  - ShipmentCreated
+  - ShipmentStatusUpdated
+  - CarrierAssigned
+  - DeliveryCompleted
+- **Queries**:
+  - GetShipmentStatus
+  - TrackShipment
+  - GetDeliveryEstimate
+
+## API Gateway Routes
+
+```typescript
+// Product Service
+POST   /api/v1/products            // CreateProduct
+GET    /api/v1/products            // ListProducts
+GET    /api/v1/products/:id        // GetProduct
+PUT    /api/v1/products/:id        // UpdateProduct
+DELETE /api/v1/products/:id        // DeleteProduct
+GET    /api/v1/products/search     // SearchProducts
+
+// Order Service
+POST   /api/v1/orders              // CreateOrder (publishes OrderCreated and OrderPaymentRequested as needed)
+GET    /api/v1/orders              // ListOrders
+GET    /api/v1/orders/:id          // GetOrder
+PUT    /api/v1/orders/:id/status   // UpdateOrderStatus
+DELETE /api/v1/orders/:id          // CancelOrder
+GET    /api/v1/orders/customer/:customerId  // Get orders for a customer
+
+// Customer Service
+POST   /api/v1/customers                   // RegisterCustomer
+GET    /api/v1/customers/:id               // GetCustomerProfile
+PUT    /api/v1/customers/:id               // UpdateCustomerProfile
+GET    /api/v1/customers/:id/orders        // GetCustomerOrders
+PUT    /api/v1/customers/:id/addresses     // UpdateShippingAddress (or manage addresses)
+PUT    /api/v1/customers/:id/payment-methods // UpdateBillingInfo/payment-methods
+
+// Cart Service
+POST   /api/v1/carts               // CreateCart
+GET    /api/v1/carts/:id           // GetCart
+PUT    /api/v1/carts/:id/items     // Add/Update Cart Items (maps to AddItemToCart or UpdateQuantity)
+DELETE /api/v1/carts/:id/items/:itemId // RemoveItemFromCart
+PUT    /api/v1/carts/:id/coupon    // ApplyCoupon
+
+// Payment Service
+POST   /api/v1/payments            // ProcessPayment
+POST   /api/v1/payments/:id/refund   // RefundPayment
+GET    /api/v1/payments/:id/status   // GetPaymentStatus
+GET    /api/v1/payments/customer/:customerId // GetPaymentHistory
+
+// Shipping Service
+POST   /api/v1/shipments           // CreateShipment
+GET    /api/v1/shipments/:id/track // TrackShipment
+PUT    /api/v1/shipments/:id/status // UpdateShipmentStatus
+GET    /api/v1/shipments/order/:orderId // GetShipmentStatus / Shipment details for an order
 ```
 
-To create a production bundle:
+## NX Monorepo Structure
 
-```sh
-npx nx build ec-client --configuration=production
 ```
-
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project ec-client
+project-root/
+├── apps/                                   # presentation layer (only calls application layer)
+│   ├── api-gateway/                        # aPI Gateway
+│   │   ├── src/
+│   │   │   ├── main.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── controllers/                # exposes APIs (calls services from application layer)
+│   │   │   │   ├── v1/                     # versioned controllers
+│   │   │   │   │   ├── product.controller.ts
+│   │   │   │   │   ├── order.controller.ts
+│   │   │   │   │   └── other controllers
+│   │   │   │   └── v2/
+│   │   │   ├── middlewares/
+│   │   │   └── interceptors/
+│   │   └── project.json
+│   │
+│   ├── product-service/                    # product microservice (cqrs, event sourcing)
+│   │   ├── src/
+│   │   │   ├── main.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── controllers/
+│   │   │   │   └── v1/
+│   │   │   │       └── product.controller.ts
+│   │   │   ├── middlewares/
+│   │   │   └── interceptors/
+│   │   └── project.json
+│   │
+│   └── other-microservices/
+│
+├── libs/                                   # core libraries (domain + application + infra)
+│   ├── domain/                             # 📌 core domain layer (💡 inner circle)
+│   │   ├── products/
+│   │   │   ├── src/
+│   │   │   │   ├── aggregates/
+│   │   │   │   ├── entities/
+│   │   │   │   ├── value-objects/
+│   │   │   │   ├── events/
+│   │   │   │   ├── domain-services/        # pure business logic, no dependencies
+│   │   │   │   ├── repositories/           # repository interfaces, not implementations
+│   │   │   │   └── index.ts
+│   │   │   └── project.json
+│   │   └── other-domains/
+│   │
+│   ├── application/                        # 📌 application layer (💡 use cases)
+│   │   ├── src/
+│   │   │   ├── commands/                   # command handlers (cqrs)
+│   │   │   ├── queries/                    # query handlers (cqrs)
+│   │   │   ├── event-handlers/             # event-driven handlers
+│   │   │   ├── services/                   # application services (orchestrate domain logic)
+│   │   │   └── index.ts
+│   │   └── project.json
+│   │
+│   ├── infrastructure/                     # 📌 infrastructure layer (💡 outermost circle)
+│   │   ├── src/
+│   │   │   ├── persistence/                # database config (orm, schema)
+│   │   │   ├── repositories/               # repository implementations (calls db)
+│   │   │   ├── messaging/                  # message broker (kafka, rabbitmq, etc.)
+│   │   │   ├── eventstore/                 # event store integration
+│   │   │   ├── external-services/          # http, grpc, or third-party integrations
+│   │   │   └── index.ts
+│   │   └── project.json
+│   │
+│   ├── sdk/                                # 📌 sdk layer (apps interact via this)
+│   │   ├── src/
+│   │   │   ├── product-sdk/                # sdk exposing application layer services
+│   │   │   │   └── v1/                     # versioned sdk
+│   │   │   │       ├── index.ts
+│   │   │   │       └── product.client.ts   # calls application layer services
+│   │   │   ├── other-services-sdk/
+│   │   │   ├── api-gateway-sdk/            # sdk for clients to interact with api gateway
+│   │   │   └── index.ts
+│   │   └── project.json
+│   │
+│   ├── common/                             # 📌 shared utilities (constants, decorators)
+│   │   ├── src/
+│   │   │   ├── constants/
+│   │   │   ├── cache/                      # redis, memcached, etc.
+│   │   │   ├── logging/                    # winston, pino, etc.
+│   │   │   ├── exceptions/                 # custom exceptions
+│   │   │   ├── decorators/
+│   │   │   ├── middleware/
+│   │   │   ├── utils/
+│   │   │   └── index.ts
+│   │   └── project.json
+│   │
+│   └── eventstore/                         # 📌 event store & messaging abstractions
+│       ├── src/
+│       │   ├── kafka/
+│       │   ├── rabbitmq/
+│       │   ├── eventstore/
+│       │   └── index.ts
+│       └── project.json
+│
+├── tools/                                  # 📌 custom scripts, migrations, utilities, eslint/typescript configs, etc.
+├── nx.json                                 # 📌 nx workspace configuration
+├── package.json                            # 📌 root package configuration
+└── tsconfig.base.json                      # 📌 shared typescript configuration
 ```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new node application, use:
-
-```sh
-npx nx g @nx/node:app demo
-```
-
-To generate a new node library, use:
-
-```sh
-npx nx g @nx/node:lib mylib
-```
-
-To generate a new react app, use:
-
-```sh
-npx nx g @nx/react:app apps/[name]
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib libs/[name]
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-TODO: stylint, queue system, pinolog (be)

@@ -19,7 +19,7 @@
     "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
-      "@mabinogi/ui": [
+      "@nx-mono/ui": [
         "libs/ui/src/index.ts"
       ]
     }
