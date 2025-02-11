@@ -1,4 +1,3 @@
-import { IAdvertising } from '../../types';
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +9,7 @@ import {
 import classes from './styles.module.css';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import clsx from 'clsx';
+import { IAdvertising } from '../../model';
 
 type TAdsCarouselProps = {
   ads: IAdvertising[];

@@ -1,5 +1,5 @@
 import { IAdvertising } from '@/features/advertising';
-import { AdsCarousel } from '@/features/advertising/components/ads-carousel';
+import { AdsCarousel } from '@/features/advertising/ui/ads-carousel';
 
 export const HomePage = () => {
   // data from loader

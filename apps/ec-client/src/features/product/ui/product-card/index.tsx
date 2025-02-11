@@ -1,4 +1,4 @@
-import { IProduct } from '../../types';
+import { IProduct } from '../../model';
 import classes from './styles.module.css';
 
 type TProductCardProps = {

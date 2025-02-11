@@ -1,1 +1,1 @@
-export { type IAdvertising } from './types';
+export { type IAdvertising } from './model';
