@@ -9,23 +9,17 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2020",
-    "lib": [
-      "dom",
-      "ES2020",
-      "ESNext"
-    ],
+    "lib": ["dom", "ES2020", "ESNext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
-      "@nx-mono/ui": [
-        "libs/ui/src/index.ts"
-      ]
+      "@ec-domain/products": ["libs/ec-domain/products/src/index.ts"],
+      "@nx-mono/ec-application": ["libs/ec-application/src/index.ts"],
+      "@nx-mono/ec-infrastructure": ["libs/ec-infrastructure/src/index.ts"],
+      "@nx-mono/ui": ["libs/ui/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
