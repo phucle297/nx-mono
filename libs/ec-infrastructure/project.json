@@ -1,0 +1,9 @@
+{
+  "name": "ec-infrastructure",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ec-infrastructure/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ec-infrastructure --web",
+  "targets": {}
+}
