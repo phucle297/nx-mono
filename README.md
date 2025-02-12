@@ -191,14 +191,14 @@ project-root/
 │   ├── domain/                             # 📌 core domain layer (💡 inner circle)
 │   │   ├── products/
 │   │   │   ├── src/
-│   │   │   │   ├── aggregates/
-│   │   │   │   ├── entities/
-│   │   │   │   ├── value-objects/
-│   │   │   │   ├── events/
-│   │   │   │   ├── domain-services/        # pure business logic, no dependencies
-│   │   │   │   ├── repositories/           # repository interfaces, not implementations
+│   │   │   │   ├── aggregate/
+│   │   │   │   ├── entity/
+│   │   │   │   ├── value-object/
+│   │   │   │   ├── event/
+│   │   │   │   ├── domain-service/        # pure business logic, no dependencies
+│   │   │   │   ├── repository/           # repository interfaces, not implementations
 │   │   │   │   └── index.ts
-│   │   │   └── project.json
+│   │   │   └── project.json/
 │   │   └── other-domains/
 │   │
 │   ├── application/                        # 📌 application layer (💡 use cases)
@@ -213,10 +213,10 @@ project-root/
 │   ├── infrastructure/                     # 📌 infrastructure layer (💡 outermost circle)
 │   │   ├── src/
 │   │   │   ├── persistence/                # database config (orm, schema)
-│   │   │   ├── repositories/               # repository implementations (calls db)
+│   │   │   ├── repository/               # repository implementations (calls db)
 │   │   │   ├── messaging/                  # message broker (kafka, rabbitmq, etc.)
 │   │   │   ├── eventstore/                 # event store integration
-│   │   │   ├── external-services/          # http, grpc, or third-party integrations
+│   │   │   ├── external-service/          # http, grpc, or third-party integrations
 │   │   │   └── index.ts
 │   │   └── project.json
 │   │
@@ -233,11 +233,12 @@ project-root/
 │   │
 │   ├── common/                             # 📌 shared utilities (constants, decorators)
 │   │   ├── src/
-│   │   │   ├── constants/
+│   │   │   ├── constant/
 │   │   │   ├── cache/                      # redis, memcached, etc.
 │   │   │   ├── logging/                    # winston, pino, etc.
-│   │   │   ├── exceptions/                 # custom exceptions
-│   │   │   ├── decorators/
+│   │   │   ├── exception/                  # custom exceptions
+│   │   │   ├── entity/                     # base entity classes
+│   │   │   ├── decorator/
 │   │   │   ├── middleware/
 │   │   │   ├── utils/
 │   │   │   └── index.ts
