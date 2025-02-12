@@ -9,40 +9,20 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2020",
-    "lib": [
-      "dom",
-      "ES2020",
-      "ESNext"
-    ],
+    "lib": ["dom", "ES2020", "ESNext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
-      // Apps
-      "@ec-client/*": [
-        "apps/ec-client/src/*"
-      ],
-      // Libs
-      "@ec-application": [
-        "libs/ec-application/src/index.ts"
-      ],
-      "@ec-domain/products": [
-        "libs/ec-domain/products/src/index.ts"
-      ],
-      "@ec-infrastructure": [
-        "libs/ec-infrastructure/src/index.ts"
-      ],
-      "@ec-common": [
-        "libs/ec-common/src/index.ts"
-      ],
-      "@nx-mono/ui": [
-        "libs/ui/src/index.ts"
-      ]
+      "@ec-application": ["libs/ec-application/src/index.ts"],
+      "@ec-client/*": ["apps/ec-client/src/*"],
+      "@ec-common": ["libs/ec-common/src/index.ts"],
+      "@ec-domain/products": ["libs/ec-domain/products/src/index.ts"],
+      "@ec-infrastructure": ["libs/ec-infrastructure/src/index.ts"],
+      "@ec-sdk": ["libs/ec-sdk/src/index.ts"],
+      "@nx-mono/ui": ["libs/ui/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

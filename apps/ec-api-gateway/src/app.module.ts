@@ -1,9 +1,12 @@
-import { Module } from '@nestjs/common';
-import { ProductController } from './controllers/v1/product.controller';
+import { Module } from '@nestjs/common'
+import { ProductModule } from './v1/product/product.module'
+import { ProductSDKModule } from '@ec-sdk'
 
 @Module({
-  imports: [],
-  controllers: [ProductController],
-  providers: [],
+  imports: [
+    ProductModule,
+    // SDK
+    ProductSDKModule
+  ]
 })
 export class AppModule {}

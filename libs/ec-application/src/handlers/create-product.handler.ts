@@ -1,7 +1,10 @@
-import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
-import { Product, ProductRepository } from '@ec-domain/products';
-import { CreateProductCommand } from '../commands/create-product.command';
-import { ProductCreatedEvent } from '@ec-domain/products';
+import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs'
+import {
+  Product,
+  ProductRepository,
+  ProductCreatedEvent
+} from '@ec-domain/products'
+import { CreateProductCommand } from '../commands/create-product.command'
 
 @CommandHandler(CreateProductCommand)
 export class CreateProductHandler
@@ -13,17 +16,18 @@ export class CreateProductHandler
   ) {}
 
   async execute(command: CreateProductCommand): Promise<void> {
+    const { name, description, price, stock } = command.payload
     const product = new Product(
       Date.now().toString(),
-      command.name,
-      command.description,
-      command.price,
-      command.stock
-    );
+      name,
+      description,
+      price,
+      stock
+    )
 
-    await this.repository.save(product);
+    await this.repository.save(product)
     this.eventBus.publish(
       new ProductCreatedEvent(product.id, product.name, product.price)
-    );
+    )
   }
 }

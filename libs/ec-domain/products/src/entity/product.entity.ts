@@ -8,15 +8,15 @@ export class Product {
   ) {}
 
   updateDetails(name: string, description: string) {
-    this.name = name;
-    this.description = description;
+    this.name = name
+    this.description = description
   }
 
   updatePrice(newPrice: number) {
-    this.price = newPrice;
+    this.price = newPrice
   }
 
   updateStock(quantity: number) {
-    this.stock += quantity;
+    this.stock += quantity
   }
 }

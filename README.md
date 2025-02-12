@@ -159,22 +159,22 @@ GET    /api/v1/shipments/order/:orderId // GetShipmentStatus / Shipment details 
 
 ```
 project-root/
-├── apps/                                   # presentation layer (only calls application layer)
-│   ├── api-gateway/                        # aPI Gateway
+├── apps/                                       # presentation layer (only calls application layer)
+│   ├── api-gateway/                            # API Gateway
 │   │   ├── src/
-│   │   │   ├── main.ts
-│   │   │   ├── app.module.ts
-│   │   │   ├── controllers/                # exposes APIs (calls services from application layer)
-│   │   │   │   ├── v1/                     # versioned controllers
-│   │   │   │   │   ├── product.controller.ts
-│   │   │   │   │   ├── order.controller.ts
-│   │   │   │   │   └── other controllers
-│   │   │   │   └── v2/
+│   │   │   ├── v1/                             # versioned controllers
+│   │   │   │   ├── product/
+│   │   │   │   │   ├── product.controller.ts   # exposes APIs (calls services from application layer)
+│   │   │   │   │   └── product.module.ts
+│   │   │   │   └── other services/
 │   │   │   ├── middlewares/
-│   │   │   └── interceptors/
+│   │   │   ├── config/
+│   │   │   ├── interceptors/
+│   │   │   ├── main.ts
+│   │   │   └── app.module.ts
 │   │   └── project.json
 │   │
-│   ├── product-service/                    # product microservice (cqrs, event sourcing)
+│   ├── product-service/                        # product microservice (cqrs, event sourcing)
 │   │   ├── src/
 │   │   │   ├── main.ts
 │   │   │   ├── app.module.ts
@@ -187,64 +187,64 @@ project-root/
 │   │
 │   └── other-microservices/
 │
-├── libs/                                   # core libraries (domain + application + infra)
-│   ├── domain/                             # 📌 core domain layer (💡 inner circle)
+├── libs/                                       # core libraries (domain + application + infra)
+│   ├── domain/                                 # core domain layer (inner circle)
 │   │   ├── products/
 │   │   │   ├── src/
 │   │   │   │   ├── aggregate/
 │   │   │   │   ├── entity/
 │   │   │   │   ├── value-object/
 │   │   │   │   ├── event/
-│   │   │   │   ├── domain-service/        # pure business logic, no dependencies
-│   │   │   │   ├── repository/           # repository interfaces, not implementations
+│   │   │   │   ├── domain-service/             # pure business logic, no dependencies
+│   │   │   │   ├── repository/                 # repository interfaces, not implementations
 │   │   │   │   └── index.ts
 │   │   │   └── project.json/
 │   │   └── other-domains/
 │   │
-│   ├── application/                        # 📌 application layer (💡 use cases)
+│   ├── application/                            # application layer (use cases)
 │   │   ├── src/
-│   │   │   ├── commands/                   # command handlers (cqrs)
-│   │   │   ├── queries/                    # query handlers (cqrs)
-│   │   │   ├── event-handlers/             # event-driven handlers
-│   │   │   ├── services/                   # application services (orchestrate domain logic)
+│   │   │   ├── commands/                       # command handlers (cqrs)
+│   │   │   ├── queries/                        # query handlers (cqrs)
+│   │   │   ├── event-handlers/                 # event-driven handlers
+│   │   │   ├── services/                       # application services (orchestrate domain logic)
 │   │   │   └── index.ts
 │   │   └── project.json
 │   │
-│   ├── infrastructure/                     # 📌 infrastructure layer (💡 outermost circle)
+│   ├── infrastructure/                         # infrastructure layer (outermost circle)
 │   │   ├── src/
-│   │   │   ├── persistence/                # database config (orm, schema)
-│   │   │   ├── repository/               # repository implementations (calls db)
-│   │   │   ├── messaging/                  # message broker (kafka, rabbitmq, etc.)
-│   │   │   ├── eventstore/                 # event store integration
-│   │   │   ├── external-service/          # http, grpc, or third-party integrations
+│   │   │   ├── persistence/                    # database config (orm, schema)
+│   │   │   ├── repository/                     # repository implementations (calls db)
+│   │   │   ├── messaging/                      # message broker (kafka, rabbitmq, etc.)
+│   │   │   ├── eventstore/                     # event store integration
+│   │   │   ├── external-service/               # http, grpc, or third-party integrations
 │   │   │   └── index.ts
 │   │   └── project.json
 │   │
-│   ├── sdk/                                # 📌 sdk layer (apps interact via this)
+│   ├── sdk/                                    # sdk layer (apps interact via this)
 │   │   ├── src/
-│   │   │   ├── product-sdk/                # sdk exposing application layer services
-│   │   │   │   └── v1/                     # versioned sdk
+│   │   │   ├── product-sdk/                    # sdk exposing application layer services
+│   │   │   │   └── v1/                         # versioned sdk
 │   │   │   │       ├── index.ts
-│   │   │   │       └── product.client.ts   # calls application layer services
+│   │   │   │       └── product.client.ts       # calls application layer services
 │   │   │   ├── other-services-sdk/
-│   │   │   ├── api-gateway-sdk/            # sdk for clients to interact with api gateway
+│   │   │   ├── api-gateway-sdk/                # sdk for clients to interact with api gateway
 │   │   │   └── index.ts
 │   │   └── project.json
 │   │
-│   ├── common/                             # 📌 shared utilities (constants, decorators)
+│   ├── common/                                 # shared utilities (constants, decorators)
 │   │   ├── src/
 │   │   │   ├── constant/
-│   │   │   ├── cache/                      # redis, memcached, etc.
-│   │   │   ├── logging/                    # winston, pino, etc.
-│   │   │   ├── exception/                  # custom exceptions
-│   │   │   ├── entity/                     # base entity classes
+│   │   │   ├── cache/                          # redis, memcached, etc.
+│   │   │   ├── logging/                        # winston, pino, etc.
+│   │   │   ├── exception/                      # custom exceptions
+│   │   │   ├── entity/                         # base entity classes
 │   │   │   ├── decorator/
 │   │   │   ├── middleware/
 │   │   │   ├── utils/
 │   │   │   └── index.ts
 │   │   └── project.json
 │   │
-│   └── eventstore/                         # 📌 event store & messaging abstractions
+│   └── eventstore/                             # event store & messaging abstractions
 │       ├── src/
 │       │   ├── kafka/
 │       │   ├── rabbitmq/
@@ -252,8 +252,7 @@ project-root/
 │       │   └── index.ts
 │       └── project.json
 │
-├── tools/                                  # 📌 custom scripts, migrations, utilities, eslint/typescript configs, etc.
-├── nx.json                                 # 📌 nx workspace configuration
-├── package.json                            # 📌 root package configuration
-└── tsconfig.base.json                      # 📌 shared typescript configuration
+├── nx.json                                     # nx workspace configuration
+├── package.json                                # root package configuration
+└── tsconfig.base.json                          # shared typescript configuration
 ```

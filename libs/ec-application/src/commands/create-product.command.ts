@@ -1,8 +1,10 @@
 export class CreateProductCommand {
   constructor(
-    public readonly name: string,
-    public readonly description: string,
-    public readonly price: number,
-    public readonly stock: number
+    public readonly payload: {
+      name: string
+      description: string
+      price: number
+      stock: number
+    }
   ) {}
 }
