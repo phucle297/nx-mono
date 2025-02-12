@@ -1,6 +1,6 @@
 {
   "extends": [
-    //"../../tsconfig.base.json",
+    "../../tsconfig.base.json",
     "../../tools/typescript-config/vite.json"
   ],
   "include": [
