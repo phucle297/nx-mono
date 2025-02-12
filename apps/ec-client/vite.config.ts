@@ -1,10 +1,10 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin'
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+import path from 'path'
 
 export default defineConfig({
   root: __dirname,
@@ -13,18 +13,18 @@ export default defineConfig({
     port: 4200,
     host: 'localhost',
     fs: {
-      allow: ['../../libs/ui/src/assets/fonts/'],
-    },
+      allow: ['../../libs/ui/src/assets/fonts/']
+    }
   },
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: 'localhost'
   },
   plugins: [
     TanStackRouterVite({ autoCodeSplitting: true }),
     react(),
     nxViteTsPaths(),
-    nxCopyAssetsPlugin(['*.md']),
+    nxCopyAssetsPlugin(['*.md'])
   ],
   // Uncomment this if you are using workers.
   // worker: {
@@ -35,9 +35,9 @@ export default defineConfig({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
+      transformMixedEsModules: true
     },
-    cssMinify: 'lightningcss',
+    cssMinify: 'lightningcss'
   },
   test: {
     watch: false,
@@ -47,16 +47,16 @@ export default defineConfig({
     reporters: ['default'],
     coverage: {
       reportsDirectory: '../../coverage/apps/ec-client',
-      provider: 'v8',
-    },
+      provider: 'v8'
+    }
   },
   css: {
-    transformer: 'lightningcss',
+    transformer: 'lightningcss'
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@ui': path.resolve(__dirname, '../../libs/ui/src'),
-    },
-  },
-});
+      '@ec-client': path.resolve(__dirname, './src'),
+      '@nx-mono/ui': path.resolve(__dirname, '../../libs/ui/src')
+    }
+  }
+})

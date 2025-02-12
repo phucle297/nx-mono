@@ -4,26 +4,26 @@ import {
   CarouselControls,
   CarouselItem,
   CarouselNextButton,
-  CarouselPrevButton,
-} from '@/shared/ui/embla-carousel';
-import classes from './styles.module.css';
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import clsx from 'clsx';
-import { IAdvertising } from '../../model';
+  CarouselPrevButton
+} from '@ec-client/shared/ui/embla-carousel'
+import classes from './styles.module.css'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import clsx from 'clsx'
+import { IAdvertising } from '../../model'
 
 type TAdsCarouselProps = {
-  ads: IAdvertising[];
-};
+  ads: IAdvertising[]
+}
 
 export const AdsCarousel = ({ ads }: TAdsCarouselProps) => {
   return (
     <Carousel
       options={{
-        loop: true,
+        loop: true
       }}
     >
       <CarouselContent contentClassName={classes['content']}>
-        {ads.map((ad) => (
+        {ads.map(ad => (
           <CarouselItem key={ad.id} className={classes['item']}>
             <img src={ad.image} alt={ad.title} />
           </CarouselItem>
@@ -38,5 +38,5 @@ export const AdsCarousel = ({ ads }: TAdsCarouselProps) => {
         </CarouselNextButton>
       </CarouselControls>
     </Carousel>
-  );
-};
+  )
+}

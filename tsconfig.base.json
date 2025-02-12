@@ -19,6 +19,11 @@
     "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
+      // Apps
+      "@ec-client/*": [
+        "apps/ec-client/src/*"
+      ],
+      // Libs
       "@ec-application": [
         "libs/ec-application/src/index.ts"
       ],

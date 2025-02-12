@@ -18,13 +18,13 @@ import { Route as LayoutIndexImport } from './app/routes/_layout/index'
 
 const LayoutRoute = LayoutImport.update({
   id: '/_layout',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRoute
 } as any)
 
 const LayoutIndexRoute = LayoutIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LayoutRoute,
+  getParentRoute: () => LayoutRoute
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -55,7 +55,7 @@ interface LayoutRouteChildren {
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
-  LayoutIndexRoute: LayoutIndexRoute,
+  LayoutIndexRoute: LayoutIndexRoute
 }
 
 const LayoutRouteWithChildren =
@@ -90,7 +90,7 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  LayoutRoute: LayoutRouteWithChildren,
+  LayoutRoute: LayoutRouteWithChildren
 }
 
 export const routeTree = rootRoute

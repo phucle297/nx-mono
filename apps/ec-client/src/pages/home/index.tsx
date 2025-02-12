@@ -1,5 +1,6 @@
-import { IAdvertising } from '@/features/advertising';
-import { AdsCarousel } from '@/features/advertising/ui/ads-carousel';
+import { IAdvertising } from '@ec-client/features/advertising'
+import { AdsCarousel } from '@ec-client/features/advertising/ui/ads-carousel'
+import { Button } from '@nx-mono/ui'
 
 export const HomePage = () => {
   // data from loader
@@ -10,7 +11,7 @@ export const HomePage = () => {
       image: 'https://picsum.photos/seed/1/1000/500',
       description: 'This is an ad',
       url: '/ad1',
-      external: false,
+      external: false
     },
     {
       id: 2,
@@ -18,7 +19,7 @@ export const HomePage = () => {
       image: 'https://picsum.photos/seed/2/1000/500',
       description: 'This is an ad',
       url: 'https://example.com',
-      external: true,
+      external: true
     },
     {
       id: 3,
@@ -26,7 +27,7 @@ export const HomePage = () => {
       image: 'https://picsum.photos/seed/3/1000/500',
       description: 'This is an ad',
       url: '/ad3',
-      external: false,
+      external: false
     },
     {
       id: 3,
@@ -34,14 +35,15 @@ export const HomePage = () => {
       image: 'https://picsum.photos/seed/4/1000/500',
       description: 'This is an ad',
       url: '/ad4',
-      external: false,
-    },
-  ];
+      external: false
+    }
+  ]
 
   return (
     <div>
       <AdsCarousel ads={ads} />
       <h1>Home</h1>
+      <Button>Click me</Button>
     </div>
-  );
-};
+  )
+}

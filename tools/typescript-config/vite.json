@@ -23,5 +23,5 @@
     "allowUnusedLabels": false,
     "noImplicitReturns": true
   },
-  "include": ["src"]
+  "include": ["${configDir}/src"]
 }

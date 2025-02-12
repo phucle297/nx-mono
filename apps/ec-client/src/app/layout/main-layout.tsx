@@ -1,14 +1,14 @@
-import { Outlet } from '@tanstack/react-router';
+import { Outlet } from '@tanstack/react-router'
 
-import { Footer } from '@/shared/ui/footer';
-import { Header } from '@/shared/ui/header';
+import { Footer } from '@ec-client/shared/ui/footer'
 
-import { useBackToTop } from './layout.hook';
+import { useBackToTop } from './layout.hook'
 
-import styles from './layout.module.css';
+import styles from './layout.module.css'
+import { Header } from '@ec-client/shared/ui/header'
 
 export const MainLayout = () => {
-  useBackToTop();
+  useBackToTop()
 
   return (
     <>
@@ -18,5 +18,5 @@ export const MainLayout = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}

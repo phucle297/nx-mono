@@ -1,5 +1,5 @@
-import { TanStackRouterDevtools } from '@/shared/lib/tanstack-router';
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@ec-client/shared/lib/tanstack-router'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createRootRoute({
   component: () => (
@@ -7,5 +7,5 @@ export const Route = createRootRoute({
       <Outlet />
       <TanStackRouterDevtools />
     </>
-  ),
-});
+  )
+})
