@@ -1,3 +1,3 @@
-export * from './entities';
-export * from './repositories';
-export * from './events';
+export * from './entity';
+export * from './repository';
+export * from './event';

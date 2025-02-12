@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "../../tsconfig.base.json",
+    "../../tools/typescript-config/nest-lib.json"
+  ],
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
