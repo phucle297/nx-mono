@@ -256,3 +256,73 @@ project-root/
 ├── package.json                                # root package configuration
 └── tsconfig.base.json                          # shared typescript configuration
 ```
+
+## Sequence Diagrams of an API Request
+
+- Command Flow:
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API Gateway
+    participant Product SDK
+    participant Product Service
+    participant Command Handler
+    participant Product Aggregate
+    participant Event Store
+    participant Event Bus
+    participant Kafka
+
+    Client->>API Gateway: POST /api/v1/products
+
+    %% SDK Layer (libs/sdk/*)
+    API Gateway->>Product SDK: createProduct()
+
+    %% Service Layer (libs/services/*)
+    Product SDK->>Product Service: create(CreateProductDto)
+
+    %% Application Layer (libs/core/application/*)
+    Product Service->>Command Handler: execute(CreateProductCommand)
+
+    %% Domain Layer (libs/core/domain/*)
+    Command Handler->>Product Aggregate: create()
+    Product Aggregate->>Product Aggregate: Apply Business Rules
+    Product Aggregate-->>Command Handler: Return Events
+
+    %% Infrastructure Layer (libs/core/infrastructure/*)
+    Command Handler->>Event Store: Save Events
+    Event Store-->>Command Handler: Confirm Save
+    Command Handler->>Event Bus: Publish Events
+    Event Bus->>Kafka: Produce Events
+
+    %% Response Path through layers
+    Command Handler-->>Product Service: Return Result
+    Product Service-->>Product SDK: Return Result
+    Product SDK-->>API Gateway: Return Result
+    API Gateway-->>Client: 201 Created
+```
+
+- Query Flow:
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API Gateway
+    participant Product SDK
+    participant Product Service
+    participant Query Handler
+    participant Read DB
+    participant Event Store
+
+    Client->>API Gateway: GET /api/v1/products
+    API Gateway->>Product SDK: getProducts()
+    Product SDK->>Product Service: getProducts()
+    Product Service->>Query Handler: execute(GetProductsQuery)
+    Query Handler->>Event Store: Get Latest Version
+    Query Handler->>Read DB: Get Products
+    Read DB-->>Query Handler: Return Data
+    Query Handler-->>Product Service: Return Result
+    Product Service-->>Product SDK: Return Result
+    Product SDK-->>API Gateway: Return Result
+    API Gateway-->>Client: 200 OK
+```
