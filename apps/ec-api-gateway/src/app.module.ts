@@ -1,11 +1,11 @@
+import { ProductSDKModule } from '@ec-sdk'
 import { Module } from '@nestjs/common'
 import { ProductModule } from './v1/product/product.module'
-import { ProductSDKModule } from '@ec-sdk'
 
 @Module({
   imports: [
     ProductModule,
-    // SDK
+    //SDK
     ProductSDKModule
   ]
 })

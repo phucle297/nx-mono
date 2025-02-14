@@ -6,29 +6,20 @@
   "tags": [],
   "targets": {
     "build": {
-      "dependsOn": [],
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "executor": "nx:run-commands",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "buildLibsFromSource": true,
-        "generatePackageJson": true,
-        "outputPath": "dist/apps/ec-api-gateway",
-        "main": "apps/ec-api-gateway/src/main.ts",
-        "tsConfig": "apps/ec-api-gateway/tsconfig.app.json",
-        "webpackConfig": "apps/ec-api-gateway/webpack.config.js"
+        "command": "webpack-cli build",
+        "args": ["node-env=production"]
       },
       "configurations": {
         "development": {
-          "mode": "dev"
+          "args": ["node-env=development"]
         },
         "test": {
-          "mode": "test"
+          "args": ["node-env=test"]
         },
         "production": {
-          "mode": "live"
+          "args": ["node-env=production"]
         }
       }
     },
@@ -36,7 +27,7 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "ec-api-gameway:build"
+        "buildTarget": "ec-api-gateway:build"
       },
       "configurations": {
         "development": {

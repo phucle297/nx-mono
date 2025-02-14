@@ -204,8 +204,13 @@ project-root/
 │   ├── application/                            # application layer (use cases)
 │   │   ├── src/
 │   │   │   ├── commands/                       # command handlers (cqrs)
+│   │   │   │   ├── handlers/
+│   │   │   │   └── impl/
 │   │   │   ├── queries/                        # query handlers (cqrs)
+│   │   │   │   ├── handlers/
+│   │   │   │   └── impl/
 │   │   │   ├── event-handlers/                 # event-driven handlers
+│   │   │   ├── providers/                      # mapping interfaces/abstract-class from domain layer to infrastructure
 │   │   │   ├── services/                       # application services (orchestrate domain logic)
 │   │   │   └── index.ts
 │   │   └── project.json

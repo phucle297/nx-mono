@@ -1,1 +1,2 @@
-export { CreateProductCommand } from './create-product.command';
+export { CreateProductHandler } from './handlers'
+export { CreateProductCommand } from './impl'

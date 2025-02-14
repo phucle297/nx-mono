@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common'
+import { Controller, Post, Body, Get, Query } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 import { ProductClient, CreateProductRequest } from '@ec-sdk'
 
@@ -13,12 +13,12 @@ export class ProductController {
     return this.productClient.createProduct(request)
   }
 
-  //@Get()
-  //@ApiOperation({ summary: 'List all products' })
-  //listProducts(@Query('page') page = 1, @Query('limit') limit = 10) {
-  //  return this.productClient.listProducts({ page, limit })
-  //}
-  //
+  @Get()
+  @ApiOperation({ summary: 'List all products' })
+  listProducts(@Query('offset') offset = 0, @Query('limit') limit = 10) {
+    return this.productClient.listProducts({ offset, limit })
+  }
+
   //@Get('search')
   //@ApiOperation({ summary: 'Search products' })
   //searchProducts(@Query('query') query: string) {
