@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package product;
+
+service CreateProductUsecase {
+  rpc Execute(CreateProductRequest) returns (CreateProductResponse);
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+  int32 stock = 4;
+}
+
+message CreateProductResponse {
+  string id = 1;
+}
+

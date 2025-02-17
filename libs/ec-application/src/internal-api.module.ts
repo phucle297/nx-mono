@@ -1,5 +1,5 @@
 import { Module, Provider } from '@nestjs/common'
-import { ProductRepositoryProvider } from './providers'
+import { ProductRepositoryProvider } from './product'
 
 export const RepositoryProviders: Provider[] = [ProductRepositoryProvider]
 

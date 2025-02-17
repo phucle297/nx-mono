@@ -1,1 +1,1 @@
-export * from './product-sdk/v1'
+export * from './product-sdk'

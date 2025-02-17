@@ -1,7 +1,7 @@
 import { ProductSDKModule } from '@ec-sdk'
 import { Module } from '@nestjs/common'
-import { ProductModule } from './v1/product/product.module'
 import { LoggerModule } from 'nestjs-pino'
+import { ProductModule } from './product/product.module'
 
 @Module({
   imports: [

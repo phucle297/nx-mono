@@ -1,5 +1,2 @@
-export * from './commands'
-export * from './queries'
-export * from './providers'
-
+export * from './product'
 export { InternalApiModule } from './internal-api.module'

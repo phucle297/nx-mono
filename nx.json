@@ -40,7 +40,10 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/ec-api-gateway-e2e/**/*"]
+      "exclude": [
+        "apps/ec-api-gateway-e2e/**/*",
+        "apps/ec-product-svc-e2e/**/*"
+      ]
     },
     {
       "plugin": "@nx/vite/plugin",

@@ -256,7 +256,9 @@ project-root/
 │       │   ├── eventstore/
 │       │   └── index.ts
 │       └── project.json
-│
+├── tools/                                      # eslint, tsconfig,...
+│   ├── eslint-config/
+│   └── typescript-config/
 ├── nx.json                                     # nx workspace configuration
 ├── package.json                                # root package configuration
 └── tsconfig.base.json                          # shared typescript configuration

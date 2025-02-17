@@ -20,6 +20,7 @@
       "@ec-common": ["libs/ec-common/src/index.ts"],
       "@ec-domain/products": ["libs/ec-domain/products/src/index.ts"],
       "@ec-infrastructure": ["libs/ec-infrastructure/src/index.ts"],
+      "@ec-proto": ["libs/ec-proto/src/index.ts"],
       "@ec-sdk": ["libs/ec-sdk/src/index.ts"],
       "@nx-mono/ui": ["libs/ui/src/index.ts"]
     }

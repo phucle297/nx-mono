@@ -1,0 +1,59 @@
+{
+  "name": "ec-product-svc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ec-product-svc/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "webpack-cli build",
+        "args": ["node-env=production"]
+      },
+      "configurations": {
+        "development": {
+          "args": ["node-env=development"]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "ec-product-svc:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ec-product-svc:build:development"
+        },
+        "production": {
+          "buildTarget": "ec-product-svc:build:production"
+        }
+      }
+    },
+    "dev": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ec-product-svc:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ec-product-svc:build:development"
+        },
+        "production": {
+          "buildTarget": "ec-product-svc:build:production"
+        }
+      }
+    },
+
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    }
+  }
+}
