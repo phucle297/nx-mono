@@ -63,6 +63,6 @@ export class CreateProductUseCase extends UseCase<
     )
 
     Logger.log(`CreateProductUseCase: ${JSON.stringify(command)}`)
-    return this.commandBus.execute(command)
+    //return this.commandBus.execute(command)
   }
 }

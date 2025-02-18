@@ -25,7 +25,7 @@ export class ProductClient implements OnModuleInit {
       request
     )
 
-    return this.productUseCases.createProductUseCase(request)
+    this.productUseCases.createProductUseCase(request)
   }
 
   //async listProducts(request: FindAllProductRequest): Promise<ProductDto[]> {
