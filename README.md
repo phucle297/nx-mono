@@ -162,11 +162,12 @@ project-root/
 ├── apps/                                       # presentation layer (only calls application layer)
 │   ├── api-gateway/                            # API Gateway
 │   │   ├── src/
-│   │   │   ├── v1/                             # versioned controllers
-│   │   │   │   ├── product/
-│   │   │   │   │   ├── product.controller.ts   # exposes APIs (calls services from application layer)
-│   │   │   │   │   └── product.module.ts
-│   │   │   │   └── other services/
+│   │   │   ├── product/                             # versioned controllers
+│   │   │   │   ├──controllers/
+│   │   │   │   │   ├── v1   # exposes APIs (calls services from application layer)
+│   │   │   │   │   │   └── product.controller.ts   # exposes APIs (calls services from application layer)
+│   │   │   │   ├── product.module.ts
+│   │   │   ├── other services/
 │   │   │   ├── middlewares/
 │   │   │   ├── config/
 │   │   │   ├── interceptors/
@@ -177,10 +178,11 @@ project-root/
 │   ├── product-service/                        # product microservice (cqrs, event sourcing)
 │   │   ├── src/
 │   │   │   ├── main.ts
-│   │   │   ├── app.module.ts
+│   │   │   ├── product.module.ts
 │   │   │   ├── controllers/
 │   │   │   │   └── v1/
 │   │   │   │       └── product.controller.ts
+│   │   │   ├── use-cases/
 │   │   │   ├── middlewares/
 │   │   │   └── interceptors/
 │   │   └── project.json

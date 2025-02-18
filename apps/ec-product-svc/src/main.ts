@@ -12,7 +12,8 @@ const grpcOptions: GrpcOptions = {
   transport: Transport.GRPC,
   options: {
     package: PRODUCT_PACKAGE_NAME,
-    protoPath: join(__dirname, './product.proto')
+    protoPath: join(__dirname, './product.proto'),
+    url: '0.0.0.0:50051'
   }
 }
 

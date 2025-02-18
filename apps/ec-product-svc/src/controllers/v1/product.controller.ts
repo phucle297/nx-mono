@@ -12,6 +12,10 @@ export class ProductGrpcController {
 
   @GrpcMethod('ProductUseCases', 'CreateProductUseCase')
   async createProductUseCase(data: CreateProductRequest) {
+    console.log(
+      '🚀 apps/ec-product-svc/src/controllers/v1/product.controller.ts:14 -> data: ',
+      data
+    )
     return this.createProductUseCaseExecute.execute(data)
   }
 }

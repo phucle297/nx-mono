@@ -6,14 +6,15 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "nx:run-commands",
       "options": {
-        "outputPath": "dist/libs/test",
-        "tsConfig": "libs/test/tsconfig.lib.json",
-        "packageJson": "libs/test/package.json",
-        "main": "libs/test/src/index.ts",
-        "assets": ["libs/test/*.md"]
+        "command": "webpack-cli build",
+        "args": ["node-env=production"]
+      },
+      "configurations": {
+        "development": {
+          "args": ["node-env=development"]
+        }
       }
     }
   }
