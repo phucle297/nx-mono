@@ -3,7 +3,7 @@ const { join } = require('path')
 
 module.exports = {
   output: {
-    path: join(__dirname, '../../dist/apps/ec-product-svc')
+    path: join(__dirname, '../../dist/libs/ec-sdk')
   },
   plugins: [
     new NxAppWebpackPlugin({
