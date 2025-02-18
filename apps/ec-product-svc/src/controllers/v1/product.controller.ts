@@ -1,16 +1,17 @@
 import { Controller } from '@nestjs/common'
-import { CreateProductUsecase } from '../../use-cases/create-product'
-import {
-  CreateProductRequest,
-  CreateProductUsecaseControllerMethods
-} from '@ec-proto'
+import { CreateProductUseCase } from '../../use-cases/create-product'
+import { CreateProductRequest } from '@ec-proto'
+import { GrpcMethod } from '@nestjs/microservices'
 
 @Controller()
-@CreateProductUsecaseControllerMethods()
-export class CreateProductGrpcController {
-  constructor(private readonly createProductUsecase: CreateProductUsecase) {}
+//@ProductUseCasesControllerMethods()
+export class ProductGrpcController {
+  constructor(
+    private readonly createProductUseCaseExecute: CreateProductUseCase
+  ) {}
 
-  async execute(data: CreateProductRequest) {
-    return this.createProductUsecase.execute(data)
+  @GrpcMethod('ProductUseCases', 'CreateProductUseCase')
+  async createProductUseCase(data: CreateProductRequest) {
+    return this.createProductUseCaseExecute.execute(data)
   }
 }

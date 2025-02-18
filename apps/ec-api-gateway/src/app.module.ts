@@ -1,4 +1,3 @@
-import { ProductSDKModule } from '@ec-sdk'
 import { Module } from '@nestjs/common'
 import { LoggerModule } from 'nestjs-pino'
 import { ProductModule } from './product/product.module'
@@ -15,9 +14,7 @@ import { ProductModule } from './product/product.module'
         }
       }
     }),
-    ProductModule,
-    //SDK
-    ProductSDKModule
+    ProductModule
   ]
 })
 export class AppModule {}

@@ -1,9 +1,9 @@
-export abstract class UsecaseInput {}
-export abstract class UsecaseOutput {}
+export abstract class UseCaseInput {}
+export abstract class UseCaseOutput {}
 
-export abstract class Usecase<
-  Input extends UsecaseInput,
-  Output extends UsecaseOutput
+export abstract class UseCase<
+  Input extends UseCaseInput,
+  Output extends UseCaseOutput
 > {
   abstract execute(
     input: Input | Input[],

@@ -1,6 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
-import { ProductClient, CreateProductRequest } from '@ec-sdk'
+import { ProductClient } from '@ec-sdk'
+import { CreateProductRequest } from '@ec-proto'
 
 @ApiTags('Products')
 @Controller('api/v1/products')
@@ -10,6 +11,11 @@ export class ProductController {
   @Post()
   @ApiOperation({ summary: 'Create new product' })
   createProduct(@Body() request: CreateProductRequest) {
+    console.log(
+      '🚀 apps/ec-api-gateway/src/product/controller/v1/product.controller.ts:12 -> request: ',
+      request
+    )
+
     return this.productClient.createProduct(request)
   }
 

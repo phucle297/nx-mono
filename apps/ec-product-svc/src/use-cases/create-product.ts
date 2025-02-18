@@ -1,9 +1,10 @@
-import { UsecaseOutput, UsecaseInput, Usecase, ApiResultDto } from '@ec-common'
+import { UseCaseOutput, UseCaseInput, UseCase, ApiResultDto } from '@ec-common'
 import { ApiProperty } from '@nestjs/swagger'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { CreateProductCommand } from '@ec-application'
+import { Logger } from '@nestjs/common'
 
-export class CreateProductUsecaseInput extends UsecaseInput {
+export class CreateProductUseCaseInput extends UseCaseInput {
   @ApiProperty({
     description: 'Product name',
     required: true,
@@ -33,7 +34,7 @@ export class CreateProductUsecaseInput extends UsecaseInput {
   stock: number
 }
 
-export class CreateProductUsecaseOutput extends UsecaseOutput {
+export class CreateProductUseCaseOutput extends UseCaseOutput {
   @ApiProperty({
     description: 'API result',
     type: ApiResultDto,
@@ -42,9 +43,9 @@ export class CreateProductUsecaseOutput extends UsecaseOutput {
   result: ApiResultDto
 }
 
-export class CreateProductUsecase extends Usecase<
-  CreateProductUsecaseInput,
-  CreateProductUsecaseOutput
+export class CreateProductUseCase extends UseCase<
+  CreateProductUseCaseInput,
+  CreateProductUseCaseOutput
 > {
   constructor(
     private readonly commandBus: CommandBus,
@@ -53,9 +54,15 @@ export class CreateProductUsecase extends Usecase<
     super()
   }
 
-  async execute(input: CreateProductUsecaseInput) {
+  async execute(input: CreateProductUseCaseInput) {
     const { name, price, description, stock } = input
     const command = new CreateProductCommand(name, description, price, stock)
+    console.log(
+      '🚀 apps/ec-product-svc/src/use-cases/create-product.ts:59 -> command: ',
+      command
+    )
+
+    Logger.log(`CreateProductUseCase: ${JSON.stringify(command)}`)
     return this.commandBus.execute(command)
   }
 }

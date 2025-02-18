@@ -1,8 +1,16 @@
 import { Module, Provider } from '@nestjs/common'
-import { ProductRepositoryProvider } from './product'
+import {
+  CreateProductHandler,
+  ListProductsHandler,
+  ProductRepositoryProvider
+} from './product'
+import { CqrsModule } from '@nestjs/cqrs'
 
 export const RepositoryProviders: Provider[] = [ProductRepositoryProvider]
 
+export const CommandHandlers = [CreateProductHandler]
+export const QueryHandlers = [ListProductsHandler]
+export const EventHandlers = []
 @Module({
   providers: [...RepositoryProviders],
   exports: [...RepositoryProviders]
@@ -10,8 +18,8 @@ export const RepositoryProviders: Provider[] = [ProductRepositoryProvider]
 export class Repositories {}
 
 @Module({
-  imports: [Repositories],
-  providers: [],
+  imports: [CqrsModule, Repositories],
+  providers: [...CommandHandlers, ...QueryHandlers, ...EventHandlers],
   controllers: []
 })
 export class InternalApiModule {}

@@ -30,7 +30,12 @@ export class CreateProductHandler
 
     await this.repository.save(product)
     this.eventBus.publish(
-      new ProductCreatedEvent(product.id, product.name, product.price)
+      new ProductCreatedEvent(
+        product.id,
+        product.name,
+        product.price,
+        product.stock
+      )
     )
   }
 }

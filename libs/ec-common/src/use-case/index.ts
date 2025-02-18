@@ -1,4 +1,4 @@
-export { Usecase, UsecaseInput, UsecaseOutput } from './base'
+export { UseCase, UseCaseInput, UseCaseOutput } from './base'
 export {
   ApiResultCode,
   ApiWarn,

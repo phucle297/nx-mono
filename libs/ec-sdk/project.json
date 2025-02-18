@@ -4,6 +4,17 @@
   "sourceRoot": "libs/ec-sdk/src",
   "projectType": "library",
   "tags": [],
-  "// targets": "to see all targets run: nx show project ec-sdk --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/test",
+        "tsConfig": "libs/test/tsconfig.lib.json",
+        "packageJson": "libs/test/package.json",
+        "main": "libs/test/src/index.ts",
+        "assets": ["libs/test/*.md"]
+      }
+    }
+  }
 }

@@ -1,2 +1,2 @@
 // Auto-generated index file
-export * from './create-product'
+export * from './product';

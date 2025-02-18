@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package product;
 
-service CreateProductUsecase {
-  rpc Execute(CreateProductRequest) returns (CreateProductResponse);
+service ProductUseCases {
+  rpc CreateProductUseCase(CreateProductRequest) returns (CreateProductResponse);
 }
 
 message CreateProductRequest {

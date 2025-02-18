@@ -21,7 +21,7 @@ async function bootstrap() {
     ProductModule,
     grpcOptions
   )
-  app.listen()
+  await app.listen()
 }
 
 bootstrap()

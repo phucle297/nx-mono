@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               v3.12.4
-// source: create-product.proto
+// source: product.proto
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
@@ -23,29 +23,29 @@ export interface CreateProductResponse {
 
 export const PRODUCT_PACKAGE_NAME = "product";
 
-export interface CreateProductUsecaseClient {
-  execute(request: CreateProductRequest): Observable<CreateProductResponse>;
+export interface ProductUseCasesClient {
+  createProductUseCase(request: CreateProductRequest): Observable<CreateProductResponse>;
 }
 
-export interface CreateProductUsecaseController {
-  execute(
+export interface ProductUseCasesController {
+  createProductUseCase(
     request: CreateProductRequest,
   ): Promise<CreateProductResponse> | Observable<CreateProductResponse> | CreateProductResponse;
 }
 
-export function CreateProductUsecaseControllerMethods() {
+export function ProductUseCasesControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["execute"];
+    const grpcMethods: string[] = ["createProductUseCase"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("CreateProductUsecase", method)(constructor.prototype[method], method, descriptor);
+      GrpcMethod("ProductUseCases", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("CreateProductUsecase", method)(constructor.prototype[method], method, descriptor);
+      GrpcStreamMethod("ProductUseCases", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const CREATE_PRODUCT_USECASE_SERVICE_NAME = "CreateProductUsecase";
+export const PRODUCT_USE_CASES_SERVICE_NAME = "ProductUseCases";
