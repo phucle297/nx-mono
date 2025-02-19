@@ -18,7 +18,6 @@ export interface CreateProductRequest {
 }
 
 export interface CreateProductResponse {
-  id: string;
 }
 
 export const PRODUCT_PACKAGE_NAME = "product";

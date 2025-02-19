@@ -1,2 +1,2 @@
 export { ProductClient } from './product-sdk.client'
-export { ProductSDKModule } from './product-sdk.module'
+export { ProductSdkModule } from './product-sdk.module'

@@ -2,7 +2,7 @@ import { UseCaseOutput, UseCaseInput, UseCase, ApiResultDto } from '@ec-common'
 import { ApiProperty } from '@nestjs/swagger'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { CreateProductCommand } from '@ec-application'
-import { Logger } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 
 export class CreateProductUseCaseInput extends UseCaseInput {
   @ApiProperty({
@@ -43,6 +43,7 @@ export class CreateProductUseCaseOutput extends UseCaseOutput {
   result: ApiResultDto
 }
 
+@Injectable()
 export class CreateProductUseCase extends UseCase<
   CreateProductUseCaseInput,
   CreateProductUseCaseOutput
@@ -63,6 +64,6 @@ export class CreateProductUseCase extends UseCase<
     )
 
     Logger.log(`CreateProductUseCase: ${JSON.stringify(command)}`)
-    //return this.commandBus.execute(command)
+    return this.commandBus.execute(command)
   }
 }

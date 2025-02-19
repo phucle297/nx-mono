@@ -21,11 +21,10 @@ export class ProductClient implements OnModuleInit {
 
   async createProduct(request: CreateProductRequest) {
     console.log(
-      '🚀 libs/ec-sdk/src/product-sdk/product-sdk.client.ts:22 -> request: ',
-      request
+      '🚀 libs/ec-sdk/src/product-sdk/product-sdk.client.ts:33 -> createProduct: '
     )
 
-    this.productUseCases.createProductUseCase(request)
+    return this.productUseCases.createProductUseCase(request)
   }
 
   //async listProducts(request: FindAllProductRequest): Promise<ProductDto[]> {
