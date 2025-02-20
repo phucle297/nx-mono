@@ -4,7 +4,7 @@ import {
   PRODUCT_USE_CASES_SERVICE_NAME,
   ProductUseCasesClient
 } from '@ec-proto'
-import { ClientGrpc } from '@nestjs/microservices'
+import { type ClientGrpc } from '@nestjs/microservices'
 
 @Injectable()
 export class ProductClient implements OnModuleInit {
@@ -21,7 +21,7 @@ export class ProductClient implements OnModuleInit {
 
   async createProduct(request: CreateProductRequest) {
     console.log(
-      '🚀 libs/ec-sdk/src/product-sdk/product-sdk.client.ts:33 -> createProduct: '
+      '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.client.ts:33 -> createProduct: '
     )
 
     return this.productUseCases.createProductUseCase(request)

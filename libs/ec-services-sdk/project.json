@@ -1,7 +1,7 @@
 {
-  "name": "ec-sdk",
+  "name": "ec-services-sdk",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ec-sdk/src",
+  "sourceRoot": "libs/ec-services-sdk/src",
   "projectType": "library",
   "tags": [],
   "targets": {

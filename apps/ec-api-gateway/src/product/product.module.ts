@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ProductSdkModule } from '@ec-sdk'
+import { ProductSdkModule } from '@ec-services-sdk'
 import { ProductController } from './controller/v1/product.controller'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { join } from 'path'

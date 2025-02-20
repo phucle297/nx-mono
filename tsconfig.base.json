@@ -17,12 +17,13 @@
     "paths": {
       "@ec-application": ["libs/ec-application/src/index.ts"],
       "@ec-client/*": ["apps/ec-client/src/*"],
-      "@ec-product-svc/*": ["apps/ec-product-svc/src/*"],
       "@ec-common": ["libs/ec-common/src/index.ts"],
       "@ec-domain/products": ["libs/ec-domain/products/src/index.ts"],
       "@ec-infrastructure": ["libs/ec-infrastructure/src/index.ts"],
+      "@ec-product-svc/*": ["apps/ec-product-svc/src/*"],
       "@ec-proto": ["libs/ec-proto/src/index.ts"],
-      "@ec-sdk": ["libs/ec-sdk/src/index.ts"],
+      "@ec-services-sdk": ["libs/ec-services-sdk/src/index.ts"],
+      "@ec-api-gateway-sdk": ["libs/ec-api-gateway-sdk/src/index.ts"],
       "@nx-mono/ui": ["libs/ui/src/index.ts"]
     }
   },

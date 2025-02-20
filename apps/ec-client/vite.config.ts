@@ -38,6 +38,9 @@ export default defineConfig({
       transformMixedEsModules: true
     },
     cssMinify: 'lightningcss'
+    //rollupOptions: {
+    //  external: ['path']
+    //}
   },
   test: {
     watch: false,

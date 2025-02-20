@@ -1,6 +1,6 @@
-import nx from '@nx/eslint-plugin';
-import importPlugin from 'eslint-plugin-import';
-import unusedImports from 'eslint-plugin-unused-imports';
+import nx from '@nx/eslint-plugin'
+import importPlugin from 'eslint-plugin-import'
+import unusedImports from 'eslint-plugin-unused-imports'
 
 export default [
   ...nx.configs['flat/base'],
@@ -8,12 +8,12 @@ export default [
   ...nx.configs['flat/javascript'],
   importPlugin.flatConfigs.recommended,
   {
-    ignores: ['**/dist'],
+    ignores: ['**/dist']
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     plugins: {
-      'unused-imports': unusedImports,
+      'unused-imports': unusedImports
     },
     rules: {
       'linebreak-style': ['error', 'unix'],
@@ -25,10 +25,11 @@ export default [
           vars: 'all',
           varsIgnorePattern: '^_',
           args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
+          argsIgnorePattern: '^_'
+        }
       ],
       'import/no-unresolved': 'off',
-    },
-  },
-];
+      'import/named': 'off'
+    }
+  }
+]

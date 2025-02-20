@@ -1,9 +1,11 @@
 import { IAdvertising } from '@ec-client/features/advertising'
 import { AdsCarousel } from '@ec-client/features/advertising/ui/ads-carousel'
+import { useCreateProduct } from '@ec-client/features/product/api/create-product'
+import { axiosInstance } from '@ec-client/shared/lib/axios'
 import { Button } from '@nx-mono/ui'
 
 export const HomePage = () => {
-  // data from loader
+  const { mutate } = useCreateProduct()
   const ads: IAdvertising[] = [
     {
       id: 1,
@@ -30,7 +32,7 @@ export const HomePage = () => {
       external: false
     },
     {
-      id: 3,
+      id: 4,
       title: 'Ad 4',
       image: 'https://picsum.photos/seed/4/1000/500',
       description: 'This is an ad',
@@ -39,11 +41,22 @@ export const HomePage = () => {
     }
   ]
 
+  const onClickBtn = async () => {
+    const data = {
+      name: 'prod1',
+      description: 'Product 1',
+      price: 100,
+      stock: 1000
+    }
+    await axiosInstance.products.createProduct(data)
+    //mutate(data)
+  }
+
   return (
     <div>
       <AdsCarousel ads={ads} />
       <h1>Home</h1>
-      <Button>Click me</Button>
+      <Button onClick={onClickBtn}>Click me</Button>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
-import { ProductClient } from '@ec-sdk'
+import { ProductClient } from '@ec-services-sdk'
 import { CreateProductRequest } from '@ec-proto'
 
 @ApiTags('Products')

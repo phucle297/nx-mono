@@ -1,0 +1,20 @@
+{
+  "name": "ec-api-gateway-sdk",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ec-api-gateway-sdk/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ec-api-gateway-sdk",
+        "tsConfig": "libs/ec-api-gateway-sdk/tsconfig.lib.json",
+        "packageJson": "libs/ec-api-gateway-sdk/package.json",
+        "main": "libs/ec-api-gateway-sdk/src/index.ts",
+        "assets": ["libs/ec-api-gateway-sdk/*.md"]
+      }
+    }
+  }
+}
