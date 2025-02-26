@@ -1,4 +1,3 @@
-import { ProductCreatedEvent } from '@ec-domain/products'
 import { AggregateRoot } from '@nestjs/cqrs'
 
 export class ProductAggregate extends AggregateRoot {
@@ -10,13 +9,5 @@ export class ProductAggregate extends AggregateRoot {
     public readonly stock: number
   ) {
     super()
-  }
-  createProduct(
-    name: string,
-    description: string,
-    price: number,
-    stock: number
-  ) {
-    this.apply(new ProductCreatedEvent(name, description, price, stock))
   }
 }

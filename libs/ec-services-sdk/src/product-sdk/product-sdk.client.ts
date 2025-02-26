@@ -2,13 +2,17 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common'
 import {
   CreateProductRequest,
   PRODUCT_USE_CASES_SERVICE_NAME,
-  ProductUseCasesClient
-} from '@ec-proto'
+  ProductUseCasesClient,
+  ProductViewsClient,
+  GetProductsRequest,
+  PRODUCT_VIEWS_SERVICE_NAME
+} from '@ec-domain/products'
 import { type ClientGrpc } from '@nestjs/microservices'
 
 @Injectable()
 export class ProductClient implements OnModuleInit {
   private productUseCases: ProductUseCasesClient
+  private productViews: ProductViewsClient
 
   constructor(
     @Inject(PRODUCT_USE_CASES_SERVICE_NAME) private client: ClientGrpc
@@ -16,6 +20,9 @@ export class ProductClient implements OnModuleInit {
   onModuleInit() {
     this.productUseCases = this.client.getService<ProductUseCasesClient>(
       PRODUCT_USE_CASES_SERVICE_NAME
+    )
+    this.productViews = this.client.getService<ProductViewsClient>(
+      PRODUCT_VIEWS_SERVICE_NAME
     )
   }
 
@@ -27,11 +34,7 @@ export class ProductClient implements OnModuleInit {
     return this.productUseCases.createProductUseCase(request)
   }
 
-  //async listProducts(request: FindAllProductRequest): Promise<ProductDto[]> {
-  //  const query = new ListProductsQuery(
-  //    request?.offset ?? 0,
-  //    request?.limit ?? 10
-  //  )
-  //  return this.queryBus.execute(query)
-  //}
+  async getProducts(request: GetProductsRequest) {
+    this.productViews.getProducts(request)
+  }
 }

@@ -1,17 +1,17 @@
 import { QueryHandler } from '@nestjs/cqrs'
-import { ListProductsQuery } from '../impl'
 import { ProductRepository } from '@ec-infrastructure'
 import { AbstractProductRepository, Product } from '@ec-domain/products'
 import { Inject } from '@nestjs/common'
+import { GetProductsQuery } from '../impl'
 
-@QueryHandler(ListProductsQuery)
-export class ListProductsHandler {
+@QueryHandler(GetProductsQuery)
+export class GetProductsHandler {
   constructor(
     @Inject(AbstractProductRepository)
     private readonly repository: ProductRepository
   ) {}
 
-  async execute(query: ListProductsQuery): Promise<Product[]> {
+  async execute(query: GetProductsQuery): Promise<Product[]> {
     const products = await this.repository.findAll(query)
     return products
   }

@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
 import { BaseApiClient } from '../base'
-import { CreateProductRequest } from '@ec-proto'
-import { Product } from '@ec-domain/products'
+import { CreateProductRequest, Product } from '@ec-domain/products'
 import { PaginatedResponse } from '../types'
 
 export class ProductClient extends BaseApiClient {

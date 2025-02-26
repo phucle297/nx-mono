@@ -2,13 +2,12 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               v3.12.4
-// source: product.proto
+// source: product-use-cases.proto
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
-export const protobufPackage = "product";
 
 export interface CreateProductRequest {
   name: string;
@@ -20,7 +19,7 @@ export interface CreateProductRequest {
 export interface CreateProductResponse {
 }
 
-export const PRODUCT_PACKAGE_NAME = "product";
+export const PRODUCT_USE_CASES_PACKAGE_NAME = "productUseCases";
 
 export interface ProductUseCasesClient {
   createProductUseCase(request: CreateProductRequest): Observable<CreateProductResponse>;

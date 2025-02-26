@@ -335,3 +335,6 @@ sequenceDiagram
     Product SDK-->>API Gateway: Return Result
     API Gateway-->>Client: 200 OK
 ```
+
+Materialize View Pattern
+Compensating Transaction Pattern

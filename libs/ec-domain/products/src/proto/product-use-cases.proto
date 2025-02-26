@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package product;
+package productUseCases;
 
 service ProductUseCases {
-  rpc CreateProductUseCase(CreateProductRequest) returns (CreateProductResponse);
+  rpc CreateProductUseCase(CreateProductRequest) returns (CreateProductResponse) {}
 }
 
 message CreateProductRequest {
@@ -15,4 +15,3 @@ message CreateProductRequest {
 
 message CreateProductResponse {
 }
-

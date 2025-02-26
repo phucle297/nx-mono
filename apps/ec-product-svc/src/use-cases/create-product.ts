@@ -1,6 +1,6 @@
 import { UseCaseOutput, UseCaseInput, UseCase, ApiResultDto } from '@ec-common'
 import { ApiProperty } from '@nestjs/swagger'
-import { CommandBus, QueryBus } from '@nestjs/cqrs'
+import { CommandBus } from '@nestjs/cqrs'
 import { CreateProductCommand } from '@ec-application'
 import { Injectable, Logger } from '@nestjs/common'
 
@@ -48,10 +48,7 @@ export class CreateProductUseCase extends UseCase<
   CreateProductUseCaseInput,
   CreateProductUseCaseOutput
 > {
-  constructor(
-    private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus
-  ) {
+  constructor(private readonly commandBus: CommandBus) {
     super()
   }
 

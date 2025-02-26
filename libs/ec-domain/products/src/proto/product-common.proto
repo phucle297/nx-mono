@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package productCommon;
+
+message ProtoPaginationDto {
+  int32 offset = 1;
+  int32 limit = 2;
+}
+
+message ProtoEmpty{}
+
+
+message ProtoProducts {
+  repeated ProtoProduct products = 1;
+}
+
+message ProtoProduct {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  int32 stock = 5;
+}

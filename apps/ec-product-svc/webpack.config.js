@@ -14,7 +14,7 @@ module.exports = {
       tsConfig: './tsconfig.app.json',
       assets: [
         {
-          input: '../../libs/ec-proto/src/proto/',
+          input: '../../libs/ec-domain/products/src/proto/',
           glob: '**/*.proto',
           output: './'
         }

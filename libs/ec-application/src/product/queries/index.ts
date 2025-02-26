@@ -1,2 +1,2 @@
-export { ListProductsQuery } from './impl'
-export { ListProductsHandler } from './handlers'
+export { GetProductsQuery } from './impl'
+export { GetProductsHandler } from './handlers'

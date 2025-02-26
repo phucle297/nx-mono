@@ -3,11 +3,11 @@ import { CreateProductUseCase } from '../../use-cases/create-product'
 import {
   CreateProductRequest,
   ProductUseCasesControllerMethods
-} from '@ec-proto'
+} from '@ec-domain/products'
 
 @Controller()
 @ProductUseCasesControllerMethods()
-export class ProductGrpcController {
+export class ProductGrpcCommandsController {
   constructor(
     private readonly executeCreateProductUseCase: CreateProductUseCase
   ) {}

@@ -81,6 +81,7 @@
     "eslint-plugin-cypress": "^3.6.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
     "eslint-plugin-react-refresh": "^0.4.19",

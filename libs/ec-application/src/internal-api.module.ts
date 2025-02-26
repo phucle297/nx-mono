@@ -1,7 +1,7 @@
 import { Module, Provider } from '@nestjs/common'
 import {
   CreateProductHandler,
-  ListProductsHandler,
+  GetProductsHandler,
   ProductRepositoryProvider
 } from './product'
 import { CqrsModule } from '@nestjs/cqrs'
@@ -9,7 +9,7 @@ import { CqrsModule } from '@nestjs/cqrs'
 export const RepositoryProviders: Provider[] = [ProductRepositoryProvider]
 
 export const CommandHandlers = [CreateProductHandler]
-export const QueryHandlers = [ListProductsHandler]
+export const QueryHandlers = [GetProductsHandler]
 export const EventHandlers = []
 @Module({
   providers: [...RepositoryProviders],

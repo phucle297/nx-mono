@@ -1,5 +1,8 @@
 export interface ProductSdkModuleOptions {
-  url: string
-  package: string
-  protoPath: string
+  urlViews?: string
+  packageViews?: string
+  protoPathViews?: string
+  urlUseCases?: string
+  packageUseCases?: string
+  protoPathUseCases?: string
 }

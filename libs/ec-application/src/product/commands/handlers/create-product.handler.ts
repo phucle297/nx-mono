@@ -33,6 +33,7 @@ export class CreateProductHandler
       new ProductCreatedEvent(
         product.id,
         product.name,
+        product.description,
         product.price,
         product.stock
       )

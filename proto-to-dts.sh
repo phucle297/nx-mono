@@ -1,42 +1,50 @@
 #!/bin/bash
-# Set the source and destination directories
-PROTO_DIR="./libs/ec-proto/src/proto"
-TS_OUT_DIR="./libs/ec-proto/src/types"
+# Base directory containing all domain subdirectories
+BASE_DIR="./libs/ec-domain"
 
+# Find all proto directories in the structure /libs/ec-domain/**/src/proto/
+find "$BASE_DIR" -type d -path "*/src/proto" | while read -r PROTO_DIR; do
+  # Determine the root domain directory (i.e., strip `/src/proto`)
+  DOMAIN_DIR="${PROTO_DIR%/src/proto}"
 
-# Clean up by removing the entire output directory
-rm -rf "$TS_OUT_DIR"
+  # Ensure output directory exists
+  TS_OUT_DIR="$DOMAIN_DIR/src/types/proto/"
+  mkdir -p "$TS_OUT_DIR"
 
-# Recreate the output directory
-mkdir -p "$TS_OUT_DIR"
+  TS_OUT_FILE="$TS_OUT_DIR/index.ts"
 
-# Find all .proto files in the PROTO_DIR and generate TypeScript definitions
-find "$PROTO_DIR" -name "*.proto" -type f | while read -r proto_file; do
-  echo "Processing $proto_file..."
+  echo "Processing proto files in $PROTO_DIR..."
 
-  protoc \
-    --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts_proto \
-    --ts_proto_out="$TS_OUT_DIR" \
-    --ts_proto_opt=env=node,nestJs=true,esModuleInterop=true \
-    -I "$PROTO_DIR" \
-    "$proto_file"\
-    --experimental_allow_proto3_optional
-    # --ts_proto_opt=outputServices=grpc-js,env=node,esModuleInterop=true,nestJs=true \
+  # Remove existing generated file
+  rm -f "$TS_OUT_FILE"
+
+  # Find all .proto files and generate TypeScript definitions
+  find "$PROTO_DIR" -name "*.proto" -type f | while read -r proto_file; do
+    echo "Compiling $proto_file..."
+
+    protoc \
+      --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts_proto \
+      --ts_proto_out="$TS_OUT_DIR" \
+      --ts_proto_opt=env=node,nestJs=true,esModuleInterop=true \
+      -I "$PROTO_DIR" \
+      "$proto_file" \
+      --experimental_allow_proto3_optional
+  done
+
+  # Remove `export const protobufPackage = "...";` from generated files
+  find "$TS_OUT_DIR" -type f -name "*.ts" -not -name "index.ts" | while read -r ts_file; do
+    sed -i '/^export const protobufPackage = /d' "$ts_file"
+  done
+
+  # Generate a single `proto.ts` file exporting all generated types
+  echo "// Auto-generated index file" > "$TS_OUT_FILE"
+
+  find "$TS_OUT_DIR" -name "*.ts" -not -name "index.ts" -type f | \
+    awk -F/ '{print $NF}' | sed 's/\.ts$//' | sort | uniq | while read -r module_path; do
+    echo "export * from './$module_path';" >> "$TS_OUT_FILE"
+  done
+  echo "Done processing $PROTO_DIR -> $TS_OUT_FILE"
 done
 
-# Create index.ts to export all generated .ts files
-echo "// Auto-generated index file" > "$TS_OUT_DIR/index.ts"
+echo "All TypeScript definitions generated successfully!"
 
-# Find all .ts files except index.ts and add export statements to index.ts
-find "$TS_OUT_DIR" -name "*.ts" -not -name "index.ts" -type f | while read -r ts_file; do
-  # Get the relative path from TS_OUT_DIR
-  rel_path=$(realpath --relative-to="$TS_OUT_DIR" "$ts_file")
-
-  # Convert to module path (remove .ts extension)
-  module_path=${rel_path%.ts}
-
-  # Add export statement to index.ts
-  echo "export * from './$module_path';" >> "$TS_OUT_DIR/index.ts"
-done
-
-echo "Done! TypeScript definitions generated and index.ts updated using ts-proto."

@@ -1,1 +1,1 @@
-export { ListProductsHandler } from './list-products.handler'
+export { GetProductsHandler } from './get-products.handler'

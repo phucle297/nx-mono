@@ -1,1 +1,1 @@
-export { ListProductsQuery } from './list-products.command'
+export { GetProductsQuery } from './get-products.command'

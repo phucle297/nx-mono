@@ -1,39 +1,15 @@
 import { DynamicModule, Module } from '@nestjs/common'
 import { ProductClient } from './product-sdk.client'
 import { ClientsModule, Transport } from '@nestjs/microservices'
-import { PRODUCT_PACKAGE_NAME, PRODUCT_USE_CASES_SERVICE_NAME } from '@ec-proto'
-import { join } from 'path'
+import {
+  PRODUCT_USE_CASES_SERVICE_NAME,
+  PRODUCT_VIEWS_SERVICE_NAME
+} from '@ec-domain/products'
 import { InternalApiModule } from '@ec-application'
 import { ConfigurableModuleClass, ASYNC_OPTIONS_TYPE } from './module-builder'
-import { ProductSdkModuleOptions } from './product-sdk.config'
 
 @Module({})
 export class ProductSdkModule extends ConfigurableModuleClass {
-  static forRoot(options: ProductSdkModuleOptions): DynamicModule {
-    const protoPath = options.protoPath || join(__dirname, './product.proto')
-    const url = options.url || '0.0.0.0:50001'
-
-    return {
-      module: ProductSdkModule,
-      imports: [
-        ClientsModule.register([
-          {
-            name: PRODUCT_USE_CASES_SERVICE_NAME,
-            transport: Transport.GRPC,
-            options: {
-              url,
-              package: PRODUCT_PACKAGE_NAME,
-              protoPath: protoPath
-            }
-          }
-        ]),
-        InternalApiModule
-      ],
-      providers: [ProductClient],
-      exports: [ProductClient]
-    }
-  }
-
   static forRootAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
     return {
       module: ProductSdkModule,
@@ -46,16 +22,44 @@ export class ProductSdkModule extends ConfigurableModuleClass {
             inject: [...(options.inject || [])],
             useFactory: async (...args) => {
               const config = (await options?.useFactory?.(...args)) || {
-                url: '',
-                package: '',
-                protoPath: ''
+                urlUseCases: '',
+                packageUseCases: '',
+                protoPathUseCases: ''
               }
+              console.log(
+                '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.module.ts:28 -> config: ',
+                config
+              )
               return {
                 transport: Transport.GRPC,
                 options: {
-                  url: config.url,
-                  package: config.package,
-                  protoPath: config.protoPath
+                  url: config.urlUseCases,
+                  package: config.packageUseCases || '',
+                  protoPath: config.protoPathUseCases
+                }
+              }
+            }
+          },
+          {
+            name: PRODUCT_VIEWS_SERVICE_NAME,
+            imports: [...(options.imports || [])],
+            inject: [...(options.inject || [])],
+            useFactory: async (...args) => {
+              const config = (await options?.useFactory?.(...args)) || {
+                urlViews: '',
+                packageViews: '',
+                protoPathViews: ''
+              }
+              console.log(
+                '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.module.ts:49 -> config: ',
+                config
+              )
+              return {
+                transport: Transport.GRPC,
+                options: {
+                  url: config.urlViews,
+                  package: config.packageViews || '',
+                  protoPath: config.protoPathViews
                 }
               }
             }
