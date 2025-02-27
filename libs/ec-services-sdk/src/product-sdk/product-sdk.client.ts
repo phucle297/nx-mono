@@ -3,8 +3,8 @@ import {
   CreateProductRequest,
   PRODUCT_USE_CASES_SERVICE_NAME,
   ProductUseCasesClient,
-  ProductViewsClient,
   GetProductsRequest,
+  ProductViewsClient,
   PRODUCT_VIEWS_SERVICE_NAME
 } from '@ec-domain/products'
 import { type ClientGrpc } from '@nestjs/microservices'
@@ -15,26 +15,24 @@ export class ProductClient implements OnModuleInit {
   private productViews: ProductViewsClient
 
   constructor(
-    @Inject(PRODUCT_USE_CASES_SERVICE_NAME) private client: ClientGrpc
+    @Inject(PRODUCT_USE_CASES_SERVICE_NAME) private clientUseCases: ClientGrpc,
+    @Inject(PRODUCT_VIEWS_SERVICE_NAME) private clientViews: ClientGrpc
   ) {}
   onModuleInit() {
-    this.productUseCases = this.client.getService<ProductUseCasesClient>(
-      PRODUCT_USE_CASES_SERVICE_NAME
-    )
-    this.productViews = this.client.getService<ProductViewsClient>(
+    this.productUseCases =
+      this.clientUseCases.getService<ProductUseCasesClient>(
+        PRODUCT_USE_CASES_SERVICE_NAME
+      )
+    this.productViews = this.clientViews.getService<ProductViewsClient>(
       PRODUCT_VIEWS_SERVICE_NAME
     )
   }
 
   async createProduct(request: CreateProductRequest) {
-    console.log(
-      '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.client.ts:33 -> createProduct: '
-    )
-
     return this.productUseCases.createProductUseCase(request)
   }
 
   async getProducts(request: GetProductsRequest) {
-    this.productViews.getProducts(request)
+    return this.productViews.getProducts(request)
   }
 }

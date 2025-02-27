@@ -16,29 +16,20 @@ import {
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         urlUseCases:
-          //configService.get('PRODUCT_USE_CASES_GRPC_URL') ||
-          '0.0.0.0:50001',
+          configService.get('PRODUCT_USE_CASES_GRPC_URL') || '0.0.0.0:50001',
         protoPathUseCases: join(
           __dirname,
           './',
-          //configService.get('PRODUCT_USE_CASES_PROTO_NAME') ||
-          'product-use-cases.proto'
+          configService.get('PRODUCT_USE_CASES_PROTO_NAME') ||
+            'product-use-cases.proto'
         ),
-        packageUseCases: PRODUCT_USE_CASES_PACKAGE_NAME
-      })
-    }),
-    ProductSdkModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+        packageUseCases: PRODUCT_USE_CASES_PACKAGE_NAME,
         urlViews:
-          //configService.get('PRODUCT_VIEWS_GRPC_URL') ||
-          '0.0.0.0:50002',
+          configService.get('PRODUCT_VIEWS_GRPC_URL') || '0.0.0.0:50002',
         protoPathViews: join(
           __dirname,
           './',
-          //configService.get('PRODUCT_VIEWS_PROTO_NAME') ||
-          'product-views.proto'
+          configService.get('PRODUCT_VIEWS_PROTO_NAME') || 'product-views.proto'
         ),
         packageViews: PRODUCT_VIEWS_PACKAGE_NAME
       })

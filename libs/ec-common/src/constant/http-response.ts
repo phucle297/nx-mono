@@ -6,6 +6,6 @@ export interface ApiResponse<T> {
 
 export interface PaginatedResponse<T> extends ApiResponse<T> {
   total: number
-  offset: number
+  page: number
   limit: number
 }

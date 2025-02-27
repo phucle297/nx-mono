@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
 import { BaseApiClient } from '../base'
 import { CreateProductRequest, Product } from '@ec-domain/products'
-import { PaginatedResponse } from '../types'
+import { PaginatedResponse } from '@ec-common'
 
 export class ProductClient extends BaseApiClient {
   protected prefix: string
@@ -11,10 +11,6 @@ export class ProductClient extends BaseApiClient {
   }
 
   async createProduct(data: CreateProductRequest) {
-    console.log(
-      '🚀 libs/ec-api-gateway-sdk/src/services/product-client.ts:12 -> data: ',
-      data
-    )
     return this.axiosInstance.post<Product>(`${this.prefix}/products`, data)
   }
 
@@ -22,7 +18,7 @@ export class ProductClient extends BaseApiClient {
     return this.axiosInstance.get<Product>(`${this.prefix}/products/${id}`)
   }
 
-  async listProducts(params?: { offset?: number; limit?: number }) {
+  async getProducts(params?: { page?: number; limit?: number }) {
     return this.axiosInstance.get<PaginatedResponse<Product[]>>(
       `${this.prefix}/products`,
       {

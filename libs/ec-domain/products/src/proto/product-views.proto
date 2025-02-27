@@ -6,15 +6,22 @@ import "product-common.proto";
 
 service ProductViews {
   rpc GetProductById(GetProductByIdRequest) returns (productCommon.ProtoProduct) {}
-  rpc GetProducts(GetProductsRequest) returns (productCommon.ProtoProducts) {}
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {}
 }
 
 message GetProductsRequest {
-  int32 limit = 1;
-  int32 offset = 2;
+  int32 page = 1;
+  int32 limit = 2;
 }
 
 message GetProductByIdRequest {
   string id = 1;
+}
+
+message GetProductsResponse {
+  repeated productCommon.ProtoProduct data = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  int32 total = 4;
 }
 

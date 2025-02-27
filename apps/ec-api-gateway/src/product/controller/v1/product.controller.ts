@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Get } from '@nestjs/common'
+import { Controller, Post, Body, Get, Query } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 import { ProductClient } from '@ec-services-sdk'
 import { CreateProductRequest } from '@ec-domain/products'
@@ -11,26 +11,15 @@ export class ProductController {
   @Post()
   @ApiOperation({ summary: 'Create new product' })
   createProduct(@Body() request: CreateProductRequest) {
-    console.log(
-      '🚀 apps/ec-api-gateway/src/product/controller/v1/product.controller.ts:12 -> request: ',
-      request
-    )
-
     return this.productClient.createProduct(request)
   }
 
   @Get()
   @ApiOperation({ summary: 'Get products' })
-  getProducts(@Param() offset: number, @Param() limit: number) {
-    console.log(
-      '🚀 apps/ec-api-gateway/src/product/controller/v1/product.controller.ts:24 -> offset: ',
-      offset,
-      limit
-    )
-
+  getProducts(@Query('page') page: number, @Query('limit') limit: number) {
     return this.productClient.getProducts({
-      limit,
-      offset
+      page: Number(page || 0),
+      limit: Number(limit || 0)
     })
   }
 }

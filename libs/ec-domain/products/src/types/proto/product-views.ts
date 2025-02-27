@@ -7,16 +7,23 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { ProtoProduct, ProtoProducts } from "./product-common";
+import { ProtoProduct } from "./product-common";
 
 
 export interface GetProductsRequest {
+  page: number;
   limit: number;
-  offset: number;
 }
 
 export interface GetProductByIdRequest {
   id: string;
+}
+
+export interface GetProductsResponse {
+  data: ProtoProduct[];
+  page: number;
+  limit: number;
+  total: number;
 }
 
 export const PRODUCT_VIEWS_PACKAGE_NAME = "productViews";
@@ -24,13 +31,15 @@ export const PRODUCT_VIEWS_PACKAGE_NAME = "productViews";
 export interface ProductViewsClient {
   getProductById(request: GetProductByIdRequest): Observable<ProtoProduct>;
 
-  getProducts(request: GetProductsRequest): Observable<ProtoProducts>;
+  getProducts(request: GetProductsRequest): Observable<GetProductsResponse>;
 }
 
 export interface ProductViewsController {
   getProductById(request: GetProductByIdRequest): Promise<ProtoProduct> | Observable<ProtoProduct> | ProtoProduct;
 
-  getProducts(request: GetProductsRequest): Promise<ProtoProducts> | Observable<ProtoProducts> | ProtoProducts;
+  getProducts(
+    request: GetProductsRequest,
+  ): Promise<GetProductsResponse> | Observable<GetProductsResponse> | GetProductsResponse;
 }
 
 export function ProductViewsControllerMethods() {

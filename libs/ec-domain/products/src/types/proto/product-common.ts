@@ -8,7 +8,7 @@
 
 
 export interface ProtoPaginationDto {
-  offset: number;
+  page: number;
   limit: number;
 }
 

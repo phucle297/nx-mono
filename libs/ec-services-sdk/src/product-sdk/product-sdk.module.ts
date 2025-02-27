@@ -26,10 +26,6 @@ export class ProductSdkModule extends ConfigurableModuleClass {
                 packageUseCases: '',
                 protoPathUseCases: ''
               }
-              console.log(
-                '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.module.ts:28 -> config: ',
-                config
-              )
               return {
                 transport: Transport.GRPC,
                 options: {
@@ -50,10 +46,6 @@ export class ProductSdkModule extends ConfigurableModuleClass {
                 packageViews: '',
                 protoPathViews: ''
               }
-              console.log(
-                '🚀 libs/ec-services-sdk/src/product-sdk/product-sdk.module.ts:49 -> config: ',
-                config
-              )
               return {
                 transport: Transport.GRPC,
                 options: {

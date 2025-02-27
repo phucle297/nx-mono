@@ -3,7 +3,7 @@ syntax = "proto3";
 package productCommon;
 
 message ProtoPaginationDto {
-  int32 offset = 1;
+  int32 page = 1;
   int32 limit = 2;
 }
 

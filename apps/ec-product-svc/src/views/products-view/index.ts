@@ -6,18 +6,18 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class ProductsViewInput extends UseCaseInput {
   @ApiProperty({
-    description: 'offset',
-    required: false,
-    type: Number
-  })
-  offset: number
-
-  @ApiProperty({
     description: 'limit',
     required: false,
     type: Number
   })
   limit: number
+
+  @ApiProperty({
+    description: 'page',
+    required: false,
+    type: Number
+  })
+  page: number
 }
 
 export class ProductsViewOutput extends UseCaseOutput {
@@ -36,13 +36,8 @@ export class ProductsView
   constructor(private readonly queryBus: QueryBus) {}
 
   async execute(input: ProductsViewInput) {
-    const { limit, offset } = input
-    const query = new GetProductsQuery(offset, limit)
-    console.log(
-      '🚀 apps/ec-product-svc/src/views/products-view/index.ts:40 -> query: ',
-      query
-    )
-
+    const { page, limit } = input
+    const query = new GetProductsQuery(page, limit)
     Logger.log(`GetProductsUseCase: ${JSON.stringify(query)}`)
     return this.queryBus.execute(query)
   }

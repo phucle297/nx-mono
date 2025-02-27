@@ -1,3 +1,3 @@
 export class GetProductsQuery {
-  constructor(public readonly offset: number, public readonly limit: number) {}
+  constructor(public readonly page: number, public readonly limit: number) {}
 }

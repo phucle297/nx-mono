@@ -55,11 +55,6 @@ export class CreateProductUseCase extends UseCase<
   async execute(input: CreateProductUseCaseInput) {
     const { name, price, description, stock } = input
     const command = new CreateProductCommand(name, description, price, stock)
-    console.log(
-      '🚀 apps/ec-product-svc/src/use-cases/create-product.ts:59 -> command: ',
-      command
-    )
-
     Logger.log(`CreateProductUseCase: ${JSON.stringify(command)}`)
     return this.commandBus.execute(command)
   }
