@@ -336,5 +336,16 @@ sequenceDiagram
     API Gateway-->>Client: 200 OK
 ```
 
-Materialize View Pattern
-Compensating Transaction Pattern
+### NOTE
+
+1. Using Outbox Pattern:
+
+- Kafka + Database:
+- When a service publish event, emit to table in database instead of emit directly to kafka (outbox table)
+- A background progress (CDC-Change Data Capture) (Debezium/polling worker) read data from outbox table and send event to kafka
+
+2. Materialize View Pattern:
+
+- Save event to Event store
+- Worker/consumer listen event and update materialized view
+- Materialized view act like a read model
