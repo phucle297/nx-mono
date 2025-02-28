@@ -3,8 +3,8 @@ import { AbstractBaseRepository } from './base'
 import { PaginatedResponse } from '@ec-common'
 
 export abstract class AbstractProductRepository extends AbstractBaseRepository {
-  //findById: (id: string) => Promise<Product | null>
-  //save: (product: Product) => Promise<void>
+  save: (product: Product) => Promise<void>
+  create: (product: Product) => Promise<Product>
   findAll: ({
     page,
     limit
@@ -12,7 +12,4 @@ export abstract class AbstractProductRepository extends AbstractBaseRepository {
     page: number
     limit: number
   }) => Promise<PaginatedResponse<Product[]>>
-  //search: (query: string) => Promise<Product[]>
-  //update: (product: Product) => Promise<void>
-  //delete: (id: string) => Promise<void>
 }

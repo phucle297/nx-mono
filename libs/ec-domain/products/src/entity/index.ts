@@ -1,1 +1,1 @@
-export { Product } from './product.entity';
+export { Product } from './product.entity'

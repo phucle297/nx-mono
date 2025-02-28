@@ -11,11 +11,16 @@ export class ProductClient extends BaseApiClient {
   }
 
   async createProduct(data: CreateProductRequest) {
-    return this.axiosInstance.post<Product>(`${this.prefix}/products`, data)
+    return this.axiosInstance.post<Product>(
+      `${this.prefix}/products`,
+      data
+    )
   }
 
   async getProduct(id: string) {
-    return this.axiosInstance.get<Product>(`${this.prefix}/products/${id}`)
+    return this.axiosInstance.get<Product>(
+      `${this.prefix}/products/${id}`
+    )
   }
 
   async getProducts(params?: { page?: number; limit?: number }) {

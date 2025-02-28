@@ -1,4 +1,5 @@
 export * from './entity'
+export * from './dto'
 export * from './repository'
 export * from './event'
 export * from './types'
