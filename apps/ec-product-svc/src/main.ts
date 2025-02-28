@@ -17,7 +17,7 @@ async function bootstrap() {
       options: {
         package: PRODUCT_USE_CASES_PACKAGE_NAME,
         protoPath: join(__dirname, './', 'product-use-cases.proto'),
-        url: process.env.PRODUCT_COMMAND_GRPC_URL || '0.0.0.0:50001'
+        url: process.env.PRODUCT_COMMAND_GRPC_URL || '0.0.0.0:50051'
       }
     }
   )
@@ -30,7 +30,7 @@ async function bootstrap() {
       options: {
         package: PRODUCT_VIEWS_PACKAGE_NAME,
         protoPath: join(__dirname, './', 'product-views.proto'),
-        url: process.env.PRODUCT_VIEW_GRPC_URL || '0.0.0.0:50002'
+        url: process.env.PRODUCT_VIEW_GRPC_URL || '0.0.0.0:50052'
       }
     }
   )

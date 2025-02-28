@@ -18,7 +18,7 @@ export const EventHandlers = []
 export class Repositories {}
 
 @Module({
-  imports: [CqrsModule, Repositories],
+  imports: [CqrsModule.forRoot(), Repositories],
   providers: [...CommandHandlers, ...QueryHandlers, ...EventHandlers],
   controllers: []
 })

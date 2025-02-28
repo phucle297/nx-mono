@@ -164,9 +164,9 @@ project-root/
 │   │   ├── src/
 │   │   │   ├── product/                             # versioned controllers
 │   │   │   │   ├──controllers/
-│   │   │   │   │   ├── v1   # exposes APIs (calls services from application layer)
-│   │   │   │   │   │   └── product.controller.ts   # exposes APIs (calls services from application layer)
-│   │   │   │   ├── product.module.ts
+│   │   │   │   │   └── v1   # exposes APIs (calls services from application layer)
+│   │   │   │   │       └── product.controller.ts   # exposes APIs (calls services from application layer)
+│   │   │   │   └── product.module.ts
 │   │   │   ├── other services/
 │   │   │   ├── middlewares/
 │   │   │   ├── config/
@@ -183,6 +183,7 @@ project-root/
 │   │   │   │   └── v1/
 │   │   │   │       └── product.controller.ts
 │   │   │   ├── use-cases/
+│   │   │   ├── views/
 │   │   │   ├── middlewares/
 │   │   │   └── interceptors/
 │   │   └── project.json
@@ -199,6 +200,8 @@ project-root/
 │   │   │   │   ├── event/
 │   │   │   │   ├── domain-service/             # pure business logic, no dependencies
 │   │   │   │   ├── repository/                 # repository interfaces, not implementations
+│   │   │   │   ├── types/
+│   │   │   │   ├── proto/                      # *.proto file for grpc
 │   │   │   │   └── index.ts
 │   │   │   └── project.json/
 │   │   └── other-domains/

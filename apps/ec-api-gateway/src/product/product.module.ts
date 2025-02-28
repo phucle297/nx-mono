@@ -16,7 +16,7 @@ import {
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         urlUseCases:
-          configService.get('PRODUCT_USE_CASES_GRPC_URL') || '0.0.0.0:50001',
+          configService.get('PRODUCT_USE_CASES_GRPC_URL') || '0.0.0.0:50051',
         protoPathUseCases: join(
           __dirname,
           './',
@@ -25,7 +25,7 @@ import {
         ),
         packageUseCases: PRODUCT_USE_CASES_PACKAGE_NAME,
         urlViews:
-          configService.get('PRODUCT_VIEWS_GRPC_URL') || '0.0.0.0:50002',
+          configService.get('PRODUCT_VIEWS_GRPC_URL') || '0.0.0.0:50052',
         protoPathViews: join(
           __dirname,
           './',
